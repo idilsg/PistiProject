@@ -1,7 +1,6 @@
 package project;
 
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Project {
   public static void main(String args[]) {
@@ -13,11 +12,10 @@ public class Project {
     }
     System.out.println();
   }
-//deneme
   
   public static void shuffleArray (int[] arr) {
       
-    Random r = ThreadLocalRandom.current();
+    Random r = new Random();
     for (int i = arr.length - 1; i > 0; i--) {
       int index = r.nextInt(i + 1);
       int a = arr[index];

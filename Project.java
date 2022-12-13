@@ -1,41 +1,33 @@
 package project;
 
-//import java.util.Random;
+import java.util.Random;
 
 public class Project {
-  public static void main(String args[]) {
-     String[] cards = new String[13];
-     for (int i=0; i<10; i++){
-         cards[i+1]= i+2; //wrong line
-     } 
-     
-     cards[0]= "A";
-     cards[10]= "J";
-     cards[11]= "Q";
-     cards[12]= "K";
-     
-      for (int j=0; j<13; j++) {
-          System.out.print(cards[j] + " ");
-      }
-      
-      
-/*    int[] exampleArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-      shuffleArray (exampleArray);
-      for (int i = 0; i < exampleArray.length; i++) {
-      System.out.print(exampleArray[i] + " ");
-      }
-      System.out.println();
-      }
-      
-      public static void shuffleArray (int[] arr) {
-      Random r = new Random();
-      for (int i = arr.length - 1; i > 0; i--) {
-      int index = r.nextInt(i + 1);
-      int a = arr[index];
-      arr[index] = arr[i];
-      arr[i] = a;
-      }
-      
-     */
-  } 
+
+    public static void main(String args[]) {
+
+        String[] suits = {"♠", "♣", "♥", "♦"};
+        String[] cards = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+        String[] deck = new String[52];
+        int x = 0;
+
+        for (String suit : suits) {
+            for (String card : cards) {
+                deck[x] = suit + card; //concatenating two arrays
+                x++;
+            }
+        }
+        
+        shuffleArray(deck);
+    }
+
+    public static void shuffleArray(String[] arr) {
+        Random r = new Random();
+        for (int i = arr.length - 1; i > 0; i--) {
+            int index = r.nextInt(i + 1);
+            String a = arr[index];
+            arr[index] = arr[i];
+            arr[i] = a;
+        }
+    }
 }

@@ -19,15 +19,36 @@ public class Project {
         }
         
         shuffleArray(deck);
+        cuttingDeck(deck);
     }
 
     public static void shuffleArray(String[] arr) {
-        Random r = new Random();
+        Random r1 = new Random();
         for (int i = arr.length - 1; i > 0; i--) {
-            int index = r.nextInt(i + 1);
+            int index = r1.nextInt(i + 1);
             String a = arr[index];
             arr[index] = arr[i];
             arr[i] = a;
+        }
+    }
+    
+    public static void cuttingDeck (String[] arr) {
+        Random r2 = new Random();
+        int n = 0; //first loop
+        int use1 = r2.nextInt();
+        int m = 0; //second loop
+        int use2 = r2.nextInt();
+        
+        if (n + r2 + 1 != arr.length) {
+            arr[use1] = n;
+            n++;
+            use1++;
+        }
+        
+        if (m != r2) {
+            arr[m] = use2;
+            m++;
+            use2++;
         }
     }
 }

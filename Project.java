@@ -17,9 +17,21 @@ public class Project {
                 x++;
             }
         }
-        
+
+        int k = 0; //checking
+
         shuffleArray(deck);
+        for (String decks : deck) {
+            System.out.print(deck[k] + " ");
+            k++;
+        }
+        System.out.println("\n---\n");
+        
         cuttingDeck(deck);
+        for (String decks : deck) {
+            System.out.print(deck[k] + " ");
+            k++;
+        }
     }
 
     public static void shuffleArray(String[] arr) {
@@ -31,24 +43,24 @@ public class Project {
             arr[i] = a;
         }
     }
-    
-    public static void cuttingDeck (String[] arr) {
+
+    public static void cuttingDeck(String[] arr) {
         Random r2 = new Random();
+        int randomNum = r2.nextInt(arr.length);
+        System.out.println(randomNum); //checking
         int n = 0; //first loop
-        int use1 = r2.nextInt();
+        int usage = randomNum;
         int m = 0; //second loop
-        int use2 = r2.nextInt();
-        
-        if (n + r2 + 1 != arr.length) {
-            arr[use1] = n;
+
+        if (n + randomNum - 1 != arr.length) {
+            arr[usage] = arr[n];
             n++;
-            use1++;
+            usage++;
         }
-        
-        if (m != r2) {
-            arr[m] = use2;
+
+        else if (m != randomNum) {
+            arr[m] = arr[n+m+1];
             m++;
-            use2++;
         }
     }
 }

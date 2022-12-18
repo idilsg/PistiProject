@@ -23,7 +23,7 @@ public class Project {
         shuffleArray(shuffledDeck);
 
         Random r2 = new Random();
-        int cuttingPoint = r2.nextInt(shuffledDeck.length - 2) + 1;
+        int cuttingPoint = r2.nextInt(shuffledDeck.length - 1);
 
         for (int i = cuttingPoint + 1; i <= 51; i++) {
             cutDeck[y] = shuffledDeck[i];

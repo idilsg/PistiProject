@@ -15,9 +15,9 @@ public class Project {
         }
     }
     
-    public static void dealCards(String[] arr) {
-        String computersCards[] = null;
-        String playersCards[] = null;
+    /*public static void dealCards(String[] arr) {
+        String computersCards[] = new String[4];
+        String playersCards[] = new String[4];
         
         for (int i=0; i<4; i++) {
             arr[i] = computersCards[i];
@@ -26,7 +26,7 @@ public class Project {
         for (int j=0; j<4; j++) {
             arr[j+4] = playersCards[j];
         }
-    }
+    }*/
  
     public static void main(String[] args) {
 
@@ -60,25 +60,30 @@ public class Project {
         }
 
         for (String s : cutDeck) {
-            System.out.print(s + " "); //checking
+            System.out.print(s + " "); //checking, delete later
         }
-    
         
-        String table[] = null;
-        String computer[] = null;
-        String player[] = null;
-        String remainingCards[] = null;
+        System.out.print("\n---\n"); //delete later
+        
+        String table[] = new String[4];
+        String remainingCards[] = new String[48];
+        
+        System.out.println("Cards on the table: ");
     
         for (int i=0; i<4; i++) {
             table[i] = cutDeck[i];
+            System.out.print(table[i] + " ");
         }
         
         for (int j=0; j<cutDeck.length-4; j++) {
             remainingCards[j] = cutDeck[j+4];
         }
+        
+        System.out.print("\n---\n"); //delete later
     
-        for (String s : remainingCards) {
-            System.out.print(s + " "); //checking
+        for (String l : remainingCards) {
+            System.out.print(l + " "); //checking, delete later
+            
         }
     }
 }

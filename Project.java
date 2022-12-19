@@ -3,7 +3,7 @@ package project;
 import java.util.Random;
 
 public class Project {
-    
+
     public static void shuffleArray(String[] arr) {
         Random r1 = new Random();
 
@@ -14,7 +14,7 @@ public class Project {
             arr[i] = a;
         }
     }
-    
+
     /*public static void dealCards(String[] arr) {
         String computersCards[] = new String[4];
         String playersCards[] = new String[4];
@@ -27,7 +27,6 @@ public class Project {
             arr[j+4] = playersCards[j];
         }
     }*/
- 
     public static void main(String[] args) {
 
         String[] suits = {"♠", "♣", "♥", "♦"};
@@ -62,28 +61,27 @@ public class Project {
         for (String s : cutDeck) {
             System.out.print(s + " "); //checking, delete later
         }
-        
+
         System.out.print("\n---\n"); //delete later
-        
+
         String table[] = new String[4];
         String remainingCards[] = new String[48];
-        
+
         System.out.println("Cards on the table: ");
-    
-        for (int i=0; i<4; i++) {
+
+        for (int i = 0; i < 4; i++) {
             table[i] = cutDeck[i];
             System.out.print(table[i] + " ");
         }
-        
-        for (int j=0; j<cutDeck.length-4; j++) {
-            remainingCards[j] = cutDeck[j+4];
+
+        for (int j = 0; j < cutDeck.length - 4; j++) {
+            remainingCards[j] = cutDeck[j + 4];
         }
-        
+
         System.out.print("\n---\n"); //delete later
-    
+
         for (String l : remainingCards) {
-            System.out.print(l + " "); //checking, delete later
-            
+            System.out.print(l + " "); //checking, delete later  
         }
     }
 }

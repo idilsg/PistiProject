@@ -15,7 +15,7 @@ public class Project {
         }
     }
 
-    /*public static void dealCards(String[] arr) {
+    /* public static void dealCards(String[] arr) {
         String computersCards[] = new String[4];
         String playersCards[] = new String[4];
         
@@ -26,25 +26,28 @@ public class Project {
         for (int j=0; j<4; j++) {
             arr[j+4] = playersCards[j];
         }
-    }*/
+    } */
     public static void main(String[] args) {
 
         String[] suits = {"♠", "♣", "♥", "♦"};
         String[] cards = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-        String[] shuffledDeck = new String[52];
+        String[] deck = new String[52];
         String[] cutDeck = new String[52];
         int x = 0;
         int y = 0;
 
         for (String suit : suits) {
             for (String card : cards) {
-                shuffledDeck[x] = suit + card; //concatenating two arrays
+                deck[x] = suit + card; //concatenating two arrays
                 x++;
             }
         }
 
+        String[] shuffledDeck = deck.clone();
+
         shuffleArray(shuffledDeck);
 
+        //cutting the deck
         Random r2 = new Random();
         int cuttingPoint = r2.nextInt(shuffledDeck.length - 1);
 
@@ -83,5 +86,6 @@ public class Project {
         for (String l : remainingCards) {
             System.out.print(l + " "); //checking, delete later  
         }
+
     }
 }

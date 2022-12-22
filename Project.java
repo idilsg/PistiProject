@@ -16,15 +16,15 @@ public class Project {
     }
 
     /* public static void dealCards(String[] arr) {
-        String computersCards[] = new String[4];
-        String playersCards[] = new String[4];
+        String computersHand[] = new String[4];
+        String playersHand[] = new String[4];
         
         for (int i=0; i<4; i++) {
-            arr[i] = computersCards[i];
+            arr[i] = computersHand[i];
         }
         
         for (int j=0; j<4; j++) {
-            arr[j+4] = playersCards[j];
+            arr[j+4] = playersHand[j];
         }
     } */
     public static void main(String[] args) {
@@ -33,6 +33,12 @@ public class Project {
         String[] cards = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         String[] deck = new String[52];
         String[] cutDeck = new String[52];
+        String[] computersCards = new String[cCards]; //her kart aldığında ccards'ı arttır
+        String[] playersCards = new String[pCards]; //her kart aldığında pcards'ı arttır
+        int cCards = 0;
+        int pCards = 0;
+        int computerPoint = 0;
+        int playerPoint = 0;
         int x = 0;
         int y = 0;
 
@@ -87,5 +93,6 @@ public class Project {
             System.out.print(l + " "); //checking, delete later  
         }
 
+        
     }
 }

@@ -61,29 +61,29 @@ public class Project {
         String[] tableCards = new String[4];
         for (int i = 0; i < tableCards.length; i++) {
             tableCards[i] = cutDeck[i];
-            System.out.print(tableCards[i] + " "); 
+            System.out.print(tableCards[i] + " ");
         }
-        
+
         System.out.print("\n---\n"); //delete later
         System.out.print("Computer's cards: "); //checking, delete later
 
-        // Bilgisayara 4 adet kağıt dağıt
+        //computers hand
         String[] computerCards = new String[4];
         for (int i = 0; i < computerCards.length; i++) {
             computerCards[i] = cutDeck[i + tableCards.length];
             System.out.print(computerCards[i] + " "); //checking, delete later
         }
-        
+
         System.out.print("\nYour cards: ");
 
-        // Kullanıcıya 4 adet kağıt dağıt
+        //players hand
         String[] playerCards = new String[4];
         for (int i = 0; i < playerCards.length; i++) {
             playerCards[i] = cutDeck[i + tableCards.length + computerCards.length];
             System.out.print(playerCards[i] + " ");
         }
 
-        // Destedeki 40 adet kağıtı sakla
+        //remaning cards
         String[] remainingDeck = new String[40];
         for (int i = 0; i < remainingDeck.length; i++) {
             remainingDeck[i] = cutDeck[i + tableCards.length + computerCards.length + playerCards.length];

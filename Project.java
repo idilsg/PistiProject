@@ -21,6 +21,10 @@ public class Project {
         String[] cards = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         String[] deck = new String[52];
         String[] cutDeck = new String[52];
+        String[] tableCards = new String[4];
+        String[] computerCards = new String[4];
+        String[] playerCards = new String[4];
+        String[] remainingDeck = new String[40];       
         int computerPoint = 0;
         int playerPoint = 0;
         int x = 0;
@@ -58,7 +62,6 @@ public class Project {
         System.out.print("\n---\n"); //delete later
         System.out.println("Cards on the table: ");
 
-        String[] tableCards = new String[4];
         for (int i = 0; i < tableCards.length; i++) {
             tableCards[i] = cutDeck[i];
             System.out.print(tableCards[i] + " ");
@@ -68,7 +71,6 @@ public class Project {
         System.out.print("Computer's cards: "); //checking, delete later
 
         //computers hand
-        String[] computerCards = new String[4];
         for (int i = 0; i < computerCards.length; i++) {
             computerCards[i] = cutDeck[i + tableCards.length];
             System.out.print(computerCards[i] + " "); //checking, delete later
@@ -77,14 +79,12 @@ public class Project {
         System.out.print("\nYour cards: ");
 
         //players hand
-        String[] playerCards = new String[4];
         for (int i = 0; i < playerCards.length; i++) {
             playerCards[i] = cutDeck[i + tableCards.length + computerCards.length];
             System.out.print(playerCards[i] + " ");
         }
 
-        //remaning cards
-        String[] remainingDeck = new String[40];
+        //remaining cards
         for (int i = 0; i < remainingDeck.length; i++) {
             remainingDeck[i] = cutDeck[i + tableCards.length + computerCards.length + playerCards.length];
         }

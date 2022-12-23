@@ -15,28 +15,12 @@ public class Project {
         }
     }
 
-    /* public static void dealCards(String[] arr) {
-        String computersHand[] = new String[4];
-        String playersHand[] = new String[4];
-        
-        for (int i=0; i<4; i++) {
-            arr[i] = computersHand[i];
-        }
-        
-        for (int j=0; j<4; j++) {
-            arr[j+4] = playersHand[j];
-        }
-    } */
     public static void main(String[] args) {
 
         String[] suits = {"♠", "♣", "♥", "♦"};
         String[] cards = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         String[] deck = new String[52];
         String[] cutDeck = new String[52];
-        String[] computersCards = new String[cCards]; //her kart aldığında ccards'ı arttır
-        String[] playersCards = new String[pCards]; //her kart aldığında pcards'ı arttır
-        int cCards = 0;
-        int pCards = 0;
         int computerPoint = 0;
         int playerPoint = 0;
         int x = 0;
@@ -72,27 +56,37 @@ public class Project {
         }
 
         System.out.print("\n---\n"); //delete later
-
-        String table[] = new String[4];
-        String remainingCards[] = new String[48];
-
         System.out.println("Cards on the table: ");
 
-        for (int i = 0; i < 4; i++) {
-            table[i] = cutDeck[i];
-            System.out.print(table[i] + " ");
+        String[] tableCards = new String[4];
+        for (int i = 0; i < tableCards.length; i++) {
+            tableCards[i] = cutDeck[i];
+            System.out.print(tableCards[i] + " "); 
         }
-
-        for (int j = 0; j < cutDeck.length - 4; j++) {
-            remainingCards[j] = cutDeck[j + 4];
-        }
-
-        System.out.print("\n---\n"); //delete later
-
-        for (String l : remainingCards) {
-            System.out.print(l + " "); //checking, delete later  
-        }
-
         
+        System.out.print("\n---\n"); //delete later
+        System.out.print("Computer's cards: "); //checking, delete later
+
+        // Bilgisayara 4 adet kağıt dağıt
+        String[] computerCards = new String[4];
+        for (int i = 0; i < computerCards.length; i++) {
+            computerCards[i] = cutDeck[i + tableCards.length];
+            System.out.print(computerCards[i] + " "); //checking, delete later
+        }
+        
+        System.out.print("\nYour cards: ");
+
+        // Kullanıcıya 4 adet kağıt dağıt
+        String[] playerCards = new String[4];
+        for (int i = 0; i < playerCards.length; i++) {
+            playerCards[i] = cutDeck[i + tableCards.length + computerCards.length];
+            System.out.print(playerCards[i] + " ");
+        }
+
+        // Destedeki 40 adet kağıtı sakla
+        String[] remainingDeck = new String[40];
+        for (int i = 0; i < remainingDeck.length; i++) {
+            remainingDeck[i] = cutDeck[i + tableCards.length + computerCards.length + playerCards.length];
+        }
     }
 }

@@ -1,6 +1,7 @@
 package project;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Project {
 
@@ -60,15 +61,14 @@ public class Project {
         }
 
         System.out.print("\n---\n"); //delete later
-        System.out.println("Cards on the table: ");
+        System.out.print("Cards on the table: ");
 
         for (int i = 0; i < tableCards.length; i++) {
             tableCards[i] = cutDeck[i];
             System.out.print(tableCards[i] + " ");
         }
 
-        System.out.print("\n---\n"); //delete later
-        System.out.print("Computer's cards: "); //checking, delete later
+        System.out.print("\nComputer's cards: "); //checking, delete later
 
         //computers hand
         for (int i = 0; i < computerCards.length; i++) {
@@ -88,5 +88,26 @@ public class Project {
         for (int i = 0; i < remainingDeck.length; i++) {
             remainingDeck[i] = cutDeck[i + tableCards.length + computerCards.length + playerCards.length];
         }
+        
+        System.out.print("\nEnter the sequence number of the card that you want to play: ");
+        Scanner sc = new Scanner(System.in);
+        String sequence = sc.next();
+        
+        switch(sequence) {
+            case "1":
+                System.out.print(playerCards[0]);
+                break;
+            case "2":
+                System.out.print(playerCards[1]);
+                break;
+            case "3":
+                System.out.print(playerCards[2]);
+                break;
+            case "4":
+                System.out.print(playerCards[3]);
+                break;
+            default:
+                System.out.print("You entered invalid sequence.");
+        }    
     }
 }

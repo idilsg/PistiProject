@@ -54,7 +54,7 @@ public class Project {
                         System.out.print("You entered invalid sequence.");
                 }
             }
-            
+
             if (arr.length == 2) {
                 String sequence3 = sc.next();
                 switch (sequence3) {
@@ -68,6 +68,7 @@ public class Project {
                         System.out.print("You entered invalid sequence.");
                 }
             }
+
             if (arr.length == 1) {
                 String sequence4 = sc.next();
                 switch (sequence4) {
@@ -111,7 +112,7 @@ public class Project {
         Random r2 = new Random();
         int cuttingPoint = r2.nextInt(shuffledDeck.length - 1);
 
-        for (int i = cuttingPoint + 1; i <= 51; i++) {
+        for (int i = cuttingPoint + 1; i < 52; i++) {
             cutDeck[y] = shuffledDeck[i];
             y++;
         }

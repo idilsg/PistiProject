@@ -16,6 +16,71 @@ public class Project {
         }
     }
 
+    public static void playingCards(String[] arr) {
+        Scanner sc = new Scanner(System.in);
+
+        if (arr.length == 4) {
+            String sequence1 = sc.next();
+            switch (sequence1) {
+                case "1":
+                    System.out.print(arr[0]);
+                    break;
+                case "2":
+                    System.out.print(arr[1]);
+                    break;
+                case "3":
+                    System.out.print(arr[2]);
+                    break;
+                case "4":
+                    System.out.print(arr[3]);
+                    break;
+                default:
+                    System.out.print("You entered invalid sequence.");
+            }
+
+            if (arr.length == 3) {
+                String sequence2 = sc.next();
+                switch (sequence2) {
+                    case "1":
+                        System.out.print(arr[0]);
+                        break;
+                    case "2":
+                        System.out.print(arr[1]);
+                        break;
+                    case "3":
+                        System.out.print(arr[2]);
+                        break;
+                    default:
+                        System.out.print("You entered invalid sequence.");
+                }
+            }
+            
+            if (arr.length == 2) {
+                String sequence3 = sc.next();
+                switch (sequence3) {
+                    case "1":
+                        System.out.print(arr[0]);
+                        break;
+                    case "2":
+                        System.out.print(arr[1]);
+                        break;
+                    default:
+                        System.out.print("You entered invalid sequence.");
+                }
+            }
+            if (arr.length == 1) {
+                String sequence4 = sc.next();
+                switch (sequence4) {
+                    case "1":
+                        System.out.print(arr[0]);
+                        break;
+                    default:
+                        System.out.print("You entered invalid sequence.");
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
 
         String[] suits = {"♠", "♣", "♥", "♦"};
@@ -25,7 +90,7 @@ public class Project {
         String[] tableCards = new String[4];
         String[] computerCards = new String[4];
         String[] playerCards = new String[4];
-        String[] remainingDeck = new String[40];       
+        String[] remainingDeck = new String[40];
         int computerPoint = 0;
         int playerPoint = 0;
         int x = 0;
@@ -88,26 +153,9 @@ public class Project {
         for (int i = 0; i < remainingDeck.length; i++) {
             remainingDeck[i] = cutDeck[i + tableCards.length + computerCards.length + playerCards.length];
         }
-        
+
         System.out.print("\nEnter the sequence number of the card that you want to play: ");
-        Scanner sc = new Scanner(System.in);
-        String sequence = sc.next();
-        
-        switch(sequence) {
-            case "1":
-                System.out.print(playerCards[0]);
-                break;
-            case "2":
-                System.out.print(playerCards[1]);
-                break;
-            case "3":
-                System.out.print(playerCards[2]);
-                break;
-            case "4":
-                System.out.print(playerCards[3]);
-                break;
-            default:
-                System.out.print("You entered invalid sequence.");
-        }    
+        playingCards(playerCards);
+
     }
 }

@@ -35,7 +35,7 @@ public class Project {
                     System.out.print(arr[3]);
                     break;
                 default:
-                    System.out.print("You entered invalid sequence.");
+                    System.out.print("You entered invalid sequence. ");
             }
 
             if (arr.length == 3) {
@@ -51,7 +51,7 @@ public class Project {
                         System.out.print(arr[2]);
                         break;
                     default:
-                        System.out.print("You entered invalid sequence.");
+                        System.out.print("You entered invalid sequence. ");
                 }
             }
 
@@ -65,7 +65,7 @@ public class Project {
                         System.out.print(arr[1]);
                         break;
                     default:
-                        System.out.print("You entered invalid sequence.");
+                        System.out.print("You entered invalid sequence. ");
                 }
             }
 
@@ -76,7 +76,7 @@ public class Project {
                         System.out.print(arr[0]);
                         break;
                     default:
-                        System.out.print("You entered invalid sequence.");
+                        System.out.print("You entered invalid sequence. ");
                 }
             }
         }
@@ -85,21 +85,21 @@ public class Project {
     public static void main(String[] args) {
 
         String[] suits = {"♠", "♣", "♥", "♦"};
-        String[] cards = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+        String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         String[] deck = new String[52];
         String[] cutDeck = new String[52];
         String[] tableCards = new String[4];
-        String[] computerCards = new String[4];
-        String[] playerCards = new String[4];
+        String[] computersHand = new String[4];
+        String[] playersHand = new String[4];
         String[] remainingDeck = new String[40];
-        int computerPoint = 0;
-        int playerPoint = 0;
+        int computerScore = 0;
+        int playerScore = 0;
         int x = 0;
         int y = 0;
 
         for (String suit : suits) {
-            for (String card : cards) {
-                deck[x] = suit + card; //concatenating two arrays
+            for (String rank : ranks) {
+                deck[x] = suit + rank; //concatenating two arrays
                 x++;
             }
         }
@@ -137,26 +137,33 @@ public class Project {
         System.out.print("\nComputer's cards: "); //checking, delete later
 
         //computers hand
-        for (int i = 0; i < computerCards.length; i++) {
-            computerCards[i] = cutDeck[i + tableCards.length];
-            System.out.print(computerCards[i] + " "); //checking, delete later
+        for (int i = 0; i < computersHand.length; i++) {
+            computersHand[i] = cutDeck[i + tableCards.length];
+            System.out.print(computersHand[i] + " "); //checking, delete later
         }
 
         System.out.print("\nYour cards: ");
 
         //players hand
-        for (int i = 0; i < playerCards.length; i++) {
-            playerCards[i] = cutDeck[i + tableCards.length + computerCards.length];
-            System.out.print(playerCards[i] + " ");
+        for (int i = 0; i < playersHand.length; i++) {
+            playersHand[i] = cutDeck[i + tableCards.length + computersHand.length];
+            System.out.print(playersHand[i] + " ");
         }
 
         //remaining cards
         for (int i = 0; i < remainingDeck.length; i++) {
-            remainingDeck[i] = cutDeck[i + tableCards.length + computerCards.length + playerCards.length];
+            remainingDeck[i] = cutDeck[i + tableCards.length + computersHand.length + playersHand.length];
         }
 
         System.out.print("\nEnter the sequence number of the card that you want to play: ");
-        playingCards(playerCards);
-
+        playingCards(playersHand);
+        
+        if (computerScore > playerScore) {
+            System.out.println("\nComputer wins!");
+        } else if (playerScore > computerScore){
+            System.out.println("\nYou win!");
+        } else {
+            System.out.println("\nNobody won! Your score and computers score are equal.");
+        }
     }
 }

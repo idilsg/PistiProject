@@ -102,22 +102,28 @@ public class Project {
         }
     }
 
+    public static void computerPlays(String[] arr) {
+
+    }
+
     public static void main(String[] args) {
 
         String[] suits = {"♠", "♣", "♥", "♦"};
         String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         String[] deck = new String[52];
         String[] cutDeck = new String[52];
-        String[] tableCards = new String[4];
+        String[] board = new String[4];
         String[] computersHand = new String[4];
         String[] playersHand = new String[4];
-        int computersTotalCards = 0;
-        int playersTotalCards = 0;
+        int computersTotalCards = 0; //bilgisayar, masadaki kartları aldıkça artır.
+        int playersTotalCards = 0; //oyuncu, masadaki kartları aldıkça artır.
+        int remainingCards = 48;
         String[] computersCards = new String[computersTotalCards];
         String[] playersCards = new String[playersTotalCards];
-        String[] remainingDeck = new String[40];
+        String[] remainingDeck = new String[remainingCards];
         int computerScore = 0;
         int playerScore = 0;
+        int round = 1;
         int x = 0;
         int y = 0;
 
@@ -150,37 +156,43 @@ public class Project {
             System.out.print(s + " "); //checking, delete later
         }
 
+        String[] finalDeck = cutDeck.clone();
+
         System.out.print("\n---\n"); //delete later
         System.out.print("Cards on the table: ");
 
-        for (int i = 0; i < tableCards.length; i++) {
-            tableCards[i] = cutDeck[i];
-            System.out.print(tableCards[i] + " ");
+        for (int i = 0; i < board.length; i++) {
+            board[i] = finalDeck[i];
+            System.out.print(board[i] + " ");
         }
 
-        System.out.print("\nComputer's cards: "); //checking, delete later
+        while (round != 7) {
+            System.out.print("\nComputer's cards: "); //checking, delete later
 
-        //computers hand
-        for (int i = 0; i < computersHand.length; i++) {
-            computersHand[i] = cutDeck[i + tableCards.length];
-            System.out.print(computersHand[i] + " "); //checking, delete later
+            //computers hand
+            for (int i = 0; i < computersHand.length; i++) {
+                computersHand[i] = finalDeck[i + board.length];
+                System.out.print(computersHand[i] + " "); //checking, delete later
+            }
+
+            System.out.print("\nYour cards: ");
+
+            //players hand
+            for (int i = 0; i < playersHand.length; i++) {
+                playersHand[i] = finalDeck[i + board.length + computersHand.length];
+                System.out.print(playersHand[i] + " ");
+            }
+            
+            //remaining cards
+            remainingCards -= 8;
+            System.out.print("\n" + remainingCards);
+            for (int i = 0; i < remainingDeck.length; i++) {
+                remainingDeck[i] = finalDeck[i + board.length + computersHand.length + playersHand.length];
+            }
+
         }
 
-        System.out.print("\nYour cards: ");
-
-        //players hand
-        for (int i = 0; i < playersHand.length; i++) {
-            playersHand[i] = cutDeck[i + tableCards.length + computersHand.length];
-            System.out.print(playersHand[i] + " ");
-        }
-
-        //remaining cards
-        for (int i = 0; i < remainingDeck.length; i++) {
-            remainingDeck[i] = cutDeck[i + tableCards.length + computersHand.length + playersHand.length];
-        }
-
-        playerPlays(playersHand);
-
+        //final
         if (playersTotalCards > computersTotalCards) {
             playerScore += 3;
         } else if (computersTotalCards > playersTotalCards) {

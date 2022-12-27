@@ -16,13 +16,13 @@ public class Project {
         }
     }
 
-    public static void playingCards(String[] arr) {
+    public static void playerPlays(String[] arr) {
         boolean validInput = false;
         Scanner sc = new Scanner(System.in);
         System.out.print("\nEnter the sequence number of the card that you want to play: ");
 
-        while (!validInput) {
-            if (arr.length == 4) {
+        if (arr.length == 4) {
+            while (!validInput) {
                 String sequence1 = sc.next();
                 switch (sequence1) {
                     case "1":
@@ -46,8 +46,8 @@ public class Project {
                 }
             }
 
-            while (!validInput) {
-                if (arr.length == 3) {
+            if (arr.length == 3) {
+                while (!validInput) {
                     String sequence2 = sc.next();
                     switch (sequence2) {
                         case "1":
@@ -68,8 +68,8 @@ public class Project {
                 }
             }
 
-            while (!validInput) {
-                if (arr.length == 2) {
+            if (arr.length == 2) {
+                while (!validInput) {
                     String sequence3 = sc.next();
                     switch (sequence3) {
                         case "1":
@@ -86,19 +86,19 @@ public class Project {
                 }
             }
 
-            while(!validInput){
             if (arr.length == 1) {
-                String sequence4 = sc.next();
-                switch (sequence4) {
-                    case "1":
-                        System.out.print(arr[0]);
-                        validInput = true;
-                        break;
-                    default:
-                        System.out.print("You entered invalid sequence. ");
+                while (!validInput) {
+                    String sequence4 = sc.next();
+                    switch (sequence4) {
+                        case "1":
+                            System.out.print(arr[0]);
+                            validInput = true;
+                            break;
+                        default:
+                            System.out.print("You entered invalid sequence. ");
+                    }
                 }
             }
-        }
         }
     }
 
@@ -179,7 +179,7 @@ public class Project {
             remainingDeck[i] = cutDeck[i + tableCards.length + computersHand.length + playersHand.length];
         }
 
-        playingCards(playersHand);
+        playerPlays(playersHand);
 
         if (playersTotalCards > computersTotalCards) {
             playerScore += 3;

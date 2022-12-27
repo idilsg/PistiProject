@@ -102,8 +102,18 @@ public class Project {
         }
     }
 
-    public static void computerPlays(String[] arr) {
+    //so many wrong things, fix!!!
+    public static void computerPlays(String[] arr1, String[] arr2) {
+        for (int i = 0; i < 4; i++) {
+            char secondChar = arr2[i].charAt(2);
 
+            if (char == 'J') {
+                System.out.print("\nCards on the table: " + arr1[i] + arr2[i]);
+            } else {
+                System.out.print("\nCards on the table: " + arr1[i] + arr2[0]);
+            }
+            break;
+        }
     }
 
     public static void main(String[] args) {
@@ -123,7 +133,8 @@ public class Project {
         String[] remainingDeck = new String[remainingCards];
         int computerScore = 0;
         int playerScore = 0;
-        int round = 1;
+        int generalRound = 1;
+        int miniRound = 1;
         int x = 0;
         int y = 0;
 
@@ -166,12 +177,12 @@ public class Project {
             System.out.print(board[i] + " ");
         }
 
-        while (round != 7) {
+        while (generalRound != 7) {
             System.out.print("\nComputer's cards: "); //checking, delete later
 
             //computers hand
             for (int i = 0; i < computersHand.length; i++) {
-                computersHand[i] = finalDeck[i + board.length];
+                computersHand[i] = finalDeck[i + 4];
                 System.out.print(computersHand[i] + " "); //checking, delete later
             }
 
@@ -179,17 +190,20 @@ public class Project {
 
             //players hand
             for (int i = 0; i < playersHand.length; i++) {
-                playersHand[i] = finalDeck[i + board.length + computersHand.length];
+                playersHand[i] = finalDeck[i + 8];
                 System.out.print(playersHand[i] + " ");
             }
-            
+
             //remaining cards
-            remainingCards -= 8;
             System.out.print("\n" + remainingCards);
             for (int i = 0; i < remainingDeck.length; i++) {
-                remainingDeck[i] = finalDeck[i + board.length + computersHand.length + playersHand.length];
+                remainingDeck[i] = finalDeck[i + 12];
             }
+            remainingCards -= 8;
+            System.out.print("\n" + remainingCards);
 
+            computerPlays(board, computersHand);
+            playerPlays(playersHand);
         }
 
         //final

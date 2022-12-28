@@ -16,7 +16,8 @@ public class Project {
         }
     }
 
-    public static void playerPlays(String[] arr1, String[] arr2) { //arr1 = board, arr2 = playersHand
+    public static void playerPlays(String[] arr1, String[] arr2) {
+        //arr1 = board, arr2 = playersHand
         boolean validInput = false;
         Scanner sc = new Scanner(System.in);
         System.out.print("\nEnter the sequence number of the card that you want to play: ");
@@ -118,30 +119,36 @@ public class Project {
         }
     }
 
-    public static void computerPlays(String[] arr1, String[] arr2) { //arr1 = board, arr2 = computersHand
+    public static void computerPlays(String[] board, String[] ch, String[] cc, int a, int b, int c) {
+        //ch = computersHand, cc = computersCards, a = computerScore, b = boardTotal, c = computersTotalCards
         for (int i = 0; i < 4; i++) {
-            char secondChar = arr2[i].charAt(1);
+            char secondChar = ch[i].charAt(1);
 
-            if (arr1[arr1.length - 1].charAt(1) == secondChar && arr1.length == 1) { //if it can make pisti;
-                System.out.print("\nCards on the table: ");
-                for (int j = 0; j < arr1.length; j++) {
-                    System.out.print(arr1[j] + " "); // board
+            if (board[board.length - 1].charAt(1) == secondChar && board.length == 1) { //if it can make pisti;
+                System.out.print("\nCards on the table : ");
+                for (int j = 0; j < board.length; j++) {
+                    System.out.print(board[j] + " "); //board
                 }
-                System.out.print(arr2[i]); //card that computer played
+                System.out.print(ch[i]); //card that computer played
+                a += 10;
+                b++;
+                board[board.length] = ch[i];
             } else {
                 System.out.print("\nCards on the table: ");
-                for (int j = 0; j < arr1.length; j++) {
-                    System.out.print(arr1[j] + " ");//board
+                for (int j = 0; j < board.length; j++) {
+                    System.out.print(board[j] + " ");//board
                 }
-                System.out.print(arr2[0]); //card that computer played
+                System.out.print(ch[0]); //card that computer played
+                b++;
+                board[board.length-1] = ch[0];
             }
             break;
         }
 
         //checking, delete later
         System.out.print("\nComputer's cards: ");
-        for (int i = 0; i < arr1.length; i++) {
-            System.out.print(arr1[i] + " ");
+        for (int i = 0; i < ch.length; i++) {
+            System.out.print(ch[i] + " ");
         }
     }
 
@@ -151,7 +158,8 @@ public class Project {
         String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         String[] deck = new String[52];
         String[] cutDeck = new String[52];
-        String[] board = new String[4];
+        int boardTotal = 4;
+        String[] board = new String[boardTotal];
         String[] computersHand = new String[4];
         String[] playersHand = new String[4];
         int computersTotalCards = 0; //bilgisayar, masadaki kartları aldıkça artır.
@@ -230,7 +238,7 @@ public class Project {
             System.out.print("\n" + remainingCards); //checking, delete later
 
             while (miniRound != 5) {
-                computerPlays(board, computersHand);
+                computerPlays(board, computersHand, computersCards, computerScore, boardTotal, computersTotalCards);
                 playerPlays(board, playersHand);
                 miniRound++;
             }

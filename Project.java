@@ -122,18 +122,18 @@ public class Project {
         for (int i = 0; i < 4; i++) {
             char secondChar = arr2[i].charAt(1);
 
-            if ('J' != secondChar) {
+            if (arr1[arr1.length - 1].charAt(1) == secondChar && arr1.length == 1) { //if it can make pisti;
                 System.out.print("\nCards on the table: ");
                 for (int j = 0; j < arr1.length; j++) {
-                    System.out.print(arr1[j] + " ");// board
+                    System.out.print(arr1[j] + " "); // board
                 }
-                System.out.print(arr2[0]); //card that computer played
+                System.out.print(arr2[i]); //card that computer played
             } else {
                 System.out.print("\nCards on the table: ");
                 for (int j = 0; j < arr1.length; j++) {
-                    System.out.print(arr1[j] + " "); //board
+                    System.out.print(arr1[j] + " ");//board
                 }
-                System.out.print(arr2[i]); //card that computer played
+                System.out.print(arr2[0]); //card that computer played
             }
             break;
         }

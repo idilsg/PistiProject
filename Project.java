@@ -45,18 +45,38 @@ public class Project {
                     case "1":
                         System.out.print(playersHand[0]);
                         validInput = true;
+                        boardTotal++;
+                        board[board.length] = playersHand[0];
+                        for (int j = 0; j < board.length; j++) {
+                            System.out.print(board[j] + " "); // board
+                        }
                         break;
                     case "2":
                         System.out.print(playersHand[1]);
                         validInput = true;
+                        boardTotal++;
+                        board[board.length] = playersHand[1];
+                        for (int j = 0; j < board.length; j++) {
+                            System.out.print(board[j] + " "); // board
+                        }
                         break;
                     case "3":
                         System.out.print(playersHand[2]);
                         validInput = true;
+                        boardTotal++;
+                        board[board.length] = playersHand[2];
+                        for (int j = 0; j < board.length; j++) {
+                            System.out.print(board[j] + " "); // board
+                        }
                         break;
                     case "4":
                         System.out.print(playersHand[3]);
                         validInput = true;
+                        boardTotal++;
+                        board[board.length] = playersHand[3];
+                        for (int j = 0; j < board.length; j++) {
+                            System.out.print(board[j] + " "); // board
+                        }
                         break;
                     default:
                         System.out.print("You entered invalid sequence. Enter a valid sequence: ");
@@ -74,14 +94,29 @@ public class Project {
                         case "1":
                             System.out.print(playersHand[0]);
                             validInput = true;
+                            boardTotal++;
+                            board[board.length] = playersHand[0];
+                            for (int j = 0; j < board.length; j++) {
+                                System.out.print(board[j] + " "); // board
+                            }
                             break;
                         case "2":
                             System.out.print(playersHand[1]);
                             validInput = true;
+                            boardTotal++;
+                            board[board.length] = playersHand[1];
+                            for (int j = 0; j < board.length; j++) {
+                                System.out.print(board[j] + " "); // board
+                            }
                             break;
                         case "3":
                             System.out.print(playersHand[2]);
                             validInput = true;
+                            boardTotal++;
+                            board[board.length] = playersHand[2];
+                            for (int j = 0; j < board.length; j++) {
+                                System.out.print(board[j] + " "); // board
+                            }
                             break;
                         default:
                             System.out.print("You entered invalid sequence. ");
@@ -100,10 +135,20 @@ public class Project {
                         case "1":
                             System.out.print(playersHand[0]);
                             validInput = true;
+                            boardTotal++;
+                            board[board.length] = playersHand[0];
+                            for (int j = 0; j < board.length; j++) {
+                                System.out.print(board[j] + " "); // board
+                            }
                             break;
                         case "2":
                             System.out.print(playersHand[1]);
                             validInput = true;
+                            boardTotal++;
+                            board[board.length] = playersHand[1];
+                            for (int j = 0; j < board.length; j++) {
+                                System.out.print(board[j] + " "); // board
+                            }
                             break;
                         default:
                             System.out.print("You entered invalid sequence. ");
@@ -122,6 +167,11 @@ public class Project {
                         case "1":
                             System.out.print(playersHand[0]);
                             validInput = true;
+                            boardTotal++;
+                            board[board.length] = playersHand[0];
+                            for (int j = 0; j < board.length; j++) {
+                                System.out.print(board[j] + " "); // board
+                            }
                             break;
                         default:
                             System.out.print("You entered invalid sequence. ");

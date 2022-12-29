@@ -5,29 +5,36 @@ import java.util.Scanner;
 
 public class Project {
 
-    private static String[] board;
-    private static String[] computersHand;
-    private static String[] playersHand;
-    private static String[] computersCards;
-    private static String[] playersCards;
-    //private static String[] remainingDeck;
-    private static int boardTotal;
-    private static int computersTotalCards;
-    private static int playersTotalCards;
-    //private static int remainingCards;
-    private static int computerScore;
-    private static int playerScore;
+    static int boardTotal;
+    static int computersTotalCards;
+    static int playersTotalCards;
+    static int computerScore;
+    static int playerScore;
+    static int control;
+    static String[] deck;
+    static String[] shuffledDeck;
+    static String[] board;
+    static String[] computersHand;
+    static String[] playersHand;
+    static String[] computersCards;
+    static String[] playersCards;
 
-    public static void shuffleArray(String[] arr) {
+    public static void shuffleArray() {
         Random rShuffle = new Random();
+        shuffledDeck = deck.clone();
 
-        for (int i = arr.length - 1; i > 0; i--) {
+        for (int i = 0; i < shuffledDeck.length-1; i++) {
             int index = rShuffle.nextInt(i + 1);
-            String a = arr[index];
-            arr[index] = arr[i];
-            arr[i] = a;
+            String a = shuffledDeck[index];
+            shuffledDeck[index] = shuffledDeck[i];
+            shuffledDeck[i] = a;
         }
     }
+    
+    public static void cutDeck() {
+        
+    }
+    
 
     public static void playerPlays() {
         boolean validInput = false;
@@ -273,17 +280,17 @@ public class Project {
             for (int j = 0; j < computersHand.length - 1; j++) {
                 computersHand[j] = computersHand[j + 1];
             }
-            computersHand[computersHand.length - 1] = null;
+            computersHand[computersHand.length - 1] = "-";
         }
 
         //checking, delete later
-        System.out.print("\nComputer's cards:");
+        System.out.print("\n-Computer's cards:");
         for (int i = 0; i < computersHand.length; i++) {
             System.out.print(" " + computersHand[i]);
         }
     }
 
-    //for ♣2 (2 point) and ♦10 (3 point)
+    //for ♣2 (2 point) and ♦10 (3 point), others 1 point.
     public static void scoring() {
         for (int i = 0; i < computersCards.length; i++) {
             if ("♣2".equals(computersCards[i])) {
@@ -333,20 +340,20 @@ public class Project {
 
         String[] suits = {"♠", "♣", "♥", "♦"};
         String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-        String[] deck = new String[52];
+        deck = new String[52];
         String[] cutDeck = new String[52];
+        shuffledDeck = new String[52];
         boardTotal = 4;
         board = new String[boardTotal];
         computersHand = new String[4];
         playersHand = new String[4];
+        computersTotalCards = 0;
+        playersTotalCards = 0;
         computersCards = new String[computersTotalCards];
         playersCards = new String[playersTotalCards];
-        //remainingDeck = new String[remainingCards];
-        computersTotalCards = 0; //bilgisayar, masadaki kartları aldıkça artır.
-        playersTotalCards = 0; //oyuncu, masadaki kartları aldıkça artır.
-        //remainingCards = 48;
         computerScore = 0;
         playerScore = 0;
+        control = 4;
         int generalRound = 1;
         int miniRound = 1;
 
@@ -359,10 +366,8 @@ public class Project {
                 x++;
             }
         }
-
-        String[] shuffledDeck = deck.clone();
-
-        shuffleArray(shuffledDeck);
+        
+        shuffleArray();
 
         //cutting the deck
         Random rCut = new Random();
@@ -395,29 +400,27 @@ public class Project {
         while (generalRound != 7) {
             System.out.print("\nRound " + generalRound + ": ");
             //computers hand. checking, delete later
-            System.out.print("\nComputer's cards:");
+            System.out.print("\n-Computer's cards:");
             for (int i = 0; i < computersHand.length; i++) {
-                computersHand[i] = finalDeck[i + 4];
+                computersHand[i] = finalDeck[i + control];
                 System.out.print(" " + computersHand[i]);
             }
+            control += 4;
 
             //players hand
             System.out.print("\nYour cards:");
             for (int i = 0; i < playersHand.length; i++) {
-                playersHand[i] = finalDeck[i + 8];
+                playersHand[i] = finalDeck[i + control];
                 System.out.print(" " + playersHand[i]);
             }
+            control += 4;
 
-            /*remaining cards
-            System.out.print("\n" + remainingCards); //checking, delete later
-            remainingCards = remainingCards - 8;
-            System.arraycopy(finalDeck, 12, remainingDeck, 0, remainingCards);
-            System.out.print("\n" + remainingCards); //checking, delete later */
             while (miniRound != 5) {
                 computerPlays();
                 playerPlays();
                 miniRound++;
             }
+
             miniRound = 1;
             generalRound++;
         }
@@ -427,9 +430,6 @@ public class Project {
             playerScore += 3;
         } else if (computersTotalCards > playersTotalCards) {
             computerScore += 3;
-        } else {
-            playerScore += 0;
-            computerScore += 0;
         }
 
         scoring();

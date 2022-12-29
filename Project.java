@@ -165,6 +165,27 @@ public class Project {
             System.out.print(computersHand[i] + " ");
         }
     }
+    
+    //for ♣2 (2 point) and ♦10 (3 point)
+    public static void scoring() {
+        for (int i = 0; i < computersCards.length; i++) {
+            if ("♣2".equals(computersCards[i])) {
+                computerScore += 2;
+            }
+            if("♦10".equals(computersCards[i])) {
+                computerScore += 3;
+            }
+        }
+        
+        for (int j = 0; j < playersCards.length; j++) {
+            if ("♣2".equals(playersCards[j])) {
+                playerScore += 2;
+            }
+            if("♦10".equals(playersCards[j])) {
+                playerScore += 3;
+            }
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -270,6 +291,8 @@ public class Project {
             playerScore += 0;
             computerScore += 0;
         }
+        
+        scoring();
 
         System.out.print("\nYour score: " + playerScore);
         System.out.print("\nComputers score: " + computerScore);

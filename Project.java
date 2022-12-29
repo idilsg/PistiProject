@@ -10,19 +10,19 @@ public class Project {
     private static String[] playersHand;
     private static String[] computersCards;
     private static String[] playersCards;
-    private static String[] remainingDeck;
+    //private static String[] remainingDeck;
     private static int boardTotal;
     private static int computersTotalCards;
     private static int playersTotalCards;
-    private static int remainingCards;
+    //private static int remainingCards;
     private static int computerScore;
     private static int playerScore;
 
     public static void shuffleArray(String[] arr) {
-        Random r1 = new Random();
+        Random rShuffle = new Random();
 
         for (int i = arr.length - 1; i > 0; i--) {
-            int index = r1.nextInt(i + 1);
+            int index = rShuffle.nextInt(i + 1);
             String a = arr[index];
             arr[index] = arr[i];
             arr[i] = a;
@@ -46,7 +46,7 @@ public class Project {
                         System.out.print(playersHand[0]);
                         validInput = true;
                         boardTotal++;
-                        board[board.length] = playersHand[0];
+                        board[board.length - 1] = playersHand[0];
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
@@ -55,7 +55,7 @@ public class Project {
                         System.out.print(playersHand[1]);
                         validInput = true;
                         boardTotal++;
-                        board[board.length] = playersHand[1];
+                        board[board.length - 1] = playersHand[1];
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
@@ -64,7 +64,7 @@ public class Project {
                         System.out.print(playersHand[2]);
                         validInput = true;
                         boardTotal++;
-                        board[board.length] = playersHand[2];
+                        board[board.length - 1] = playersHand[2];
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
@@ -73,7 +73,7 @@ public class Project {
                         System.out.print(playersHand[3]);
                         validInput = true;
                         boardTotal++;
-                        board[board.length] = playersHand[3];
+                        board[board.length - 1] = playersHand[3];
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
@@ -95,7 +95,7 @@ public class Project {
                             System.out.print(playersHand[0]);
                             validInput = true;
                             boardTotal++;
-                            board[board.length] = playersHand[0];
+                            board[board.length - 1] = playersHand[0];
                             for (int j = 0; j < board.length; j++) {
                                 System.out.print(board[j] + " "); // board
                             }
@@ -104,7 +104,7 @@ public class Project {
                             System.out.print(playersHand[1]);
                             validInput = true;
                             boardTotal++;
-                            board[board.length] = playersHand[1];
+                            board[board.length - 1] = playersHand[1];
                             for (int j = 0; j < board.length; j++) {
                                 System.out.print(board[j] + " "); // board
                             }
@@ -113,7 +113,7 @@ public class Project {
                             System.out.print(playersHand[2]);
                             validInput = true;
                             boardTotal++;
-                            board[board.length] = playersHand[2];
+                            board[board.length - 1] = playersHand[2];
                             for (int j = 0; j < board.length; j++) {
                                 System.out.print(board[j] + " "); // board
                             }
@@ -136,7 +136,7 @@ public class Project {
                             System.out.print(playersHand[0]);
                             validInput = true;
                             boardTotal++;
-                            board[board.length] = playersHand[0];
+                            board[board.length - 1] = playersHand[0];
                             for (int j = 0; j < board.length; j++) {
                                 System.out.print(board[j] + " "); // board
                             }
@@ -145,7 +145,7 @@ public class Project {
                             System.out.print(playersHand[1]);
                             validInput = true;
                             boardTotal++;
-                            board[board.length] = playersHand[1];
+                            board[board.length - 1] = playersHand[1];
                             for (int j = 0; j < board.length; j++) {
                                 System.out.print(board[j] + " "); // board
                             }
@@ -168,7 +168,7 @@ public class Project {
                             System.out.print(playersHand[0]);
                             validInput = true;
                             boardTotal++;
-                            board[board.length] = playersHand[0];
+                            board[board.length - 1] = playersHand[0];
                             for (int j = 0; j < board.length; j++) {
                                 System.out.print(board[j] + " "); // board
                             }
@@ -186,7 +186,7 @@ public class Project {
             char secondChar = computersHand[i].charAt(1);
 
             //if it can make pisti;
-            if (board[board.length].charAt(1) == secondChar && board.length == 1) {
+            if (board[board.length - 1].charAt(1) == secondChar && board.length == 1) {
                 System.out.print("\nCards on the table : ");
                 for (int j = 0; j < board.length; j++) {
                     System.out.print(board[j] + " "); //board
@@ -195,8 +195,8 @@ public class Project {
                 computerScore += 10;
                 boardTotal++;
                 board[board.length] = computersHand[i]; //new board
-
             }
+            break;
         }
 
         System.out.print("\nCards on the table: ");
@@ -205,7 +205,7 @@ public class Project {
         }
         System.out.print(computersHand[0]); //card that computer played
         boardTotal++;
-        board[board.length] = computersHand[0]; //new board
+        board[board.length - 1] = computersHand[0]; //new board
 
         //checking, delete later
         System.out.print("\nComputer's cards: ");
@@ -241,16 +241,16 @@ public class Project {
         String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         String[] deck = new String[52];
         String[] cutDeck = new String[52];
-        board = new String[boardTotal];
         boardTotal = 4;
+        board = new String[boardTotal];
         computersHand = new String[4];
         playersHand = new String[4];
         computersCards = new String[computersTotalCards];
         playersCards = new String[playersTotalCards];
-        remainingDeck = new String[remainingCards];
+        //remainingDeck = new String[remainingCards];
         computersTotalCards = 0; //bilgisayar, masadaki kartları aldıkça artır.
         playersTotalCards = 0; //oyuncu, masadaki kartları aldıkça artır.
-        remainingCards = 48;
+        //remainingCards = 48;
         computerScore = 0;
         playerScore = 0;
         int generalRound = 1;
@@ -271,8 +271,8 @@ public class Project {
         shuffleArray(shuffledDeck);
 
         //cutting the deck
-        Random r2 = new Random();
-        int cuttingPoint = r2.nextInt(shuffledDeck.length - 1);
+        Random rCut = new Random();
+        int cuttingPoint = rCut.nextInt(shuffledDeck.length - 1);
 
         for (int i = cuttingPoint + 1; i < 52; i++) {
             cutDeck[y] = shuffledDeck[i];
@@ -299,12 +299,11 @@ public class Project {
         }
 
         while (generalRound != 7) {
-            System.out.print("\nComputer's cards: "); //checking, delete later
-
-            //computers hand
+            //computers hand. checking, delete later
+            System.out.print("\nComputer's cards: ");
             for (int i = 0; i < computersHand.length; i++) {
                 computersHand[i] = finalDeck[i + 4];
-                System.out.print(computersHand[i] + " "); //checking, delete later
+                System.out.print(computersHand[i] + " ");
             }
 
             System.out.print("\nYour cards: ");
@@ -315,12 +314,11 @@ public class Project {
                 System.out.print(playersHand[i] + " ");
             }
 
-            //remaining cards
+            /*remaining cards
             System.out.print("\n" + remainingCards); //checking, delete later
             remainingCards = remainingCards - 8;
             System.arraycopy(finalDeck, 12, remainingDeck, 0, remainingCards);
-            System.out.print("\n" + remainingCards); //checking, delete later
-
+            System.out.print("\n" + remainingCards); //checking, delete later */
             while (miniRound != 5) {
                 computerPlays();
                 playerPlays();

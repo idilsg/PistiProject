@@ -145,7 +145,7 @@ public class Project {
                 computerScore += 10;
                 boardTotal++;
                 board[board.length] = computersHand[i]; //bew board
-                
+
             } else {
                 System.out.print("\nCards on the table: ");
                 for (int j = 0; j < board.length; j++) {
@@ -155,7 +155,7 @@ public class Project {
                 boardTotal++;
                 board[board.length - 1] = computersHand[0]; //new board
             }
-            
+
             break;
         }
 
@@ -172,20 +172,21 @@ public class Project {
         String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         String[] deck = new String[52];
         String[] cutDeck = new String[52];
-        boardTotal = 4;
         board = new String[boardTotal];
+        boardTotal = 4;
         computersHand = new String[4];
         playersHand = new String[4];
-        computersTotalCards = 0; //bilgisayar, masadaki kartları aldıkça artır.
-        playersTotalCards = 0; //oyuncu, masadaki kartları aldıkça artır.
-        remainingCards = 48;
         computersCards = new String[computersTotalCards];
         playersCards = new String[playersTotalCards];
         remainingDeck = new String[remainingCards];
+        computersTotalCards = 0; //bilgisayar, masadaki kartları aldıkça artır.
+        playersTotalCards = 0; //oyuncu, masadaki kartları aldıkça artır.
+        remainingCards = 48;
         computerScore = 0;
         playerScore = 0;
         int generalRound = 1;
         int miniRound = 1;
+        
         int x = 0;
         int y = 0;
 

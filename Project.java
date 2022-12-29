@@ -30,7 +30,6 @@ public class Project {
     }
 
     public static void playerPlays() {
-        //arr1 = board, arr2 = playersHand
         boolean validInput = false;
         Scanner sc = new Scanner(System.in);
         System.out.print("\nEnter the sequence number of the card that you want to play: ");
@@ -136,7 +135,8 @@ public class Project {
         for (int i = 0; i < 4; i++) {
             char secondChar = computersHand[i].charAt(1);
 
-            if (board[board.length - 1].charAt(1) == secondChar && board.length == 1) { //if it can make pisti;
+            //if it can make pisti;
+            if (board[board.length].charAt(1) == secondChar && board.length == 1) {
                 System.out.print("\nCards on the table : ");
                 for (int j = 0; j < board.length; j++) {
                     System.out.print(board[j] + " "); //board
@@ -144,20 +144,18 @@ public class Project {
                 System.out.print(computersHand[i]); //card that computer played
                 computerScore += 10;
                 boardTotal++;
-                board[board.length] = computersHand[i]; //bew board
+                board[board.length] = computersHand[i]; //new board
 
-            } else {
-                System.out.print("\nCards on the table: ");
-                for (int j = 0; j < board.length; j++) {
-                    System.out.print(board[j] + " ");//board
-                }
-                System.out.print(computersHand[0]); //card that computer played
-                boardTotal++;
-                board[board.length - 1] = computersHand[0]; //new board
             }
-
-            break;
         }
+
+        System.out.print("\nCards on the table: ");
+        for (int j = 0; j < board.length; j++) {
+            System.out.print(board[j] + " "); //board
+        }
+        System.out.print(computersHand[0]); //card that computer played
+        boardTotal++;
+        board[board.length] = computersHand[0]; //new board
 
         //checking, delete later
         System.out.print("\nComputer's cards: ");
@@ -165,23 +163,23 @@ public class Project {
             System.out.print(computersHand[i] + " ");
         }
     }
-    
+
     //for ♣2 (2 point) and ♦10 (3 point)
     public static void scoring() {
         for (int i = 0; i < computersCards.length; i++) {
             if ("♣2".equals(computersCards[i])) {
                 computerScore += 2;
             }
-            if("♦10".equals(computersCards[i])) {
+            if ("♦10".equals(computersCards[i])) {
                 computerScore += 3;
             }
         }
-        
+
         for (int j = 0; j < playersCards.length; j++) {
             if ("♣2".equals(playersCards[j])) {
                 playerScore += 2;
             }
-            if("♦10".equals(playersCards[j])) {
+            if ("♦10".equals(playersCards[j])) {
                 playerScore += 3;
             }
         }
@@ -207,7 +205,7 @@ public class Project {
         playerScore = 0;
         int generalRound = 1;
         int miniRound = 1;
-        
+
         int x = 0;
         int y = 0;
 
@@ -270,7 +268,7 @@ public class Project {
             //remaining cards
             System.out.print("\n" + remainingCards); //checking, delete later
             remainingCards = remainingCards - 8;
-            System.arraycopy(finalDeck, 12, remainingDeck, 0, 40);
+            System.arraycopy(finalDeck, 12, remainingDeck, 0, remainingCards);
             System.out.print("\n" + remainingCards); //checking, delete later
 
             while (miniRound != 5) {
@@ -291,7 +289,39 @@ public class Project {
             playerScore += 0;
             computerScore += 0;
         }
-        
+
+        //adding 1 point for every card
+        if (computersTotalCards > playersTotalCards) {
+            computerScore += computersTotalCards;
+
+            //subtracting the extra scores added for special cards
+            for (int i = 0; i < computersCards.length; i++) {
+                if ("♣2".equals(computersCards[i])) {
+                    computerScore--;
+                    break;
+                }
+                if ("♦10".equals(computersCards[i])) {
+                    computerScore--;
+                    break;
+                }
+            }
+        } //adding 1 point for every card
+        else if (playersTotalCards > computersTotalCards) {
+            playerScore += playersTotalCards;
+
+            //subtracting the extra scores added for special cards
+            for (int j = 0; j < playersCards.length; j++) {
+                if ("♣2".equals(playersCards[j])) {
+                    playerScore--;
+                    break;
+                }
+                if ("♦10".equals(playersCards[j])) {
+                    playerScore--;
+                    break;
+                }
+            }
+        }
+
         scoring();
 
         System.out.print("\nYour score: " + playerScore);

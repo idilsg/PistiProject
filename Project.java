@@ -1,5 +1,6 @@
 package project;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,6 +15,7 @@ public class Project {
     static String[] deck;
     static String[] shuffledDeck;
     static String[] cutDeck;
+    static String[] finalDeck;
     static String[] board;
     static String[] computersHand;
     static String[] playersHand;
@@ -24,17 +26,15 @@ public class Project {
         Random rShuffle = new Random();
         shuffledDeck = deck.clone();
 
-        for (int i = 0; i < shuffledDeck.length-1; i++) {
+        for (int i = 0; i < shuffledDeck.length - 1; i++) {
             int index = rShuffle.nextInt(i + 1);
             String a = shuffledDeck[index];
             shuffledDeck[index] = shuffledDeck[i];
             shuffledDeck[i] = a;
         }
     }
-    
+
     public static void cutDeck() {
-        cutDeck = shuffledDeck.clone();
-        //cutting the deck
         int y = 0;
         Random rCut = new Random();
         int cuttingPoint = rCut.nextInt(shuffledDeck.length - 1);
@@ -53,7 +53,6 @@ public class Project {
             System.out.print(s + " "); //checking, delete later
         }
     }
-    
 
     public static void playerPlays() {
         boolean validInput = false;
@@ -265,20 +264,23 @@ public class Project {
                 if (board[board.length - 1].charAt(1) == secondChar && board.length == 1) {
                     System.out.print("\nCards on the table:");
                     computerScore += 10;
-                    boardTotal++;
+                    board = Arrays.copyOf(board, board.length + 1); //length++
                     board[board.length - 1] = computersHand[i]; //computer played
+
                     for (int j = 0; j < board.length; j++) {
                         System.out.print(" " + board[j]); // new board
                     }
+
                     for (int j = 0; j < board.length; j++) {
                         board[j] = ""; //computer took all cards, there is no card on the board anymore
                     }
-                    boardTotal = 0;
+
                     //no card on the table
                     System.out.print("\nCards on the table: ");
                     for (int j = 0; j < board.length; j++) {
                         System.out.print(board[j] + " "); // empty board
                     }
+
                     played = true; //other "if" won't run
                     for (int j = i; j < computersHand.length - 1; j++) {
                         computersHand[j] = computersHand[j + 1];
@@ -291,11 +293,12 @@ public class Project {
 
         if (played == false) {
             System.out.print("\nCards on the table:");
-            boardTotal++;
+            board = Arrays.copyOf(board, board.length + 1); //length++
             board[board.length - 1] = computersHand[0]; //computer played his first card
             for (int j = 0; j < board.length; j++) {
                 System.out.print(" " + board[j]); //new board
             }
+
             for (int j = 0; j < computersHand.length - 1; j++) {
                 computersHand[j] = computersHand[j + 1];
             }
@@ -377,7 +380,6 @@ public class Project {
         int miniRound = 1;
 
         int x = 0;
-        
 
         for (String suit : suits) {
             for (String rank : ranks) {
@@ -385,11 +387,11 @@ public class Project {
                 x++;
             }
         }
-        
-        shuffleArray();
-        cutDeck();
 
-        String[] finalDeck = cutDeck.clone();
+        shuffleArray();
+        cutDeck = shuffledDeck.clone();
+        cutDeck();
+        finalDeck = cutDeck.clone();
 
         System.out.print("\n---\n"); //delete later
         System.out.print("Cards on the table:");

@@ -13,6 +13,7 @@ public class Project {
     static int control;
     static String[] deck;
     static String[] shuffledDeck;
+    static String[] cutDeck;
     static String[] board;
     static String[] computersHand;
     static String[] playersHand;
@@ -32,7 +33,25 @@ public class Project {
     }
     
     public static void cutDeck() {
-        
+        cutDeck = shuffledDeck.clone();
+        //cutting the deck
+        int y = 0;
+        Random rCut = new Random();
+        int cuttingPoint = rCut.nextInt(shuffledDeck.length - 1);
+
+        for (int i = cuttingPoint + 1; i < 52; i++) {
+            cutDeck[y] = shuffledDeck[i];
+            y++;
+        }
+
+        for (int j = 0; j <= cuttingPoint; j++) {
+            cutDeck[y] = shuffledDeck[j];
+            y++;
+        }
+
+        for (String s : cutDeck) {
+            System.out.print(s + " "); //checking, delete later
+        }
     }
     
 
@@ -341,7 +360,7 @@ public class Project {
         String[] suits = {"♠", "♣", "♥", "♦"};
         String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         deck = new String[52];
-        String[] cutDeck = new String[52];
+        cutDeck = new String[52];
         shuffledDeck = new String[52];
         boardTotal = 4;
         board = new String[boardTotal];
@@ -358,7 +377,7 @@ public class Project {
         int miniRound = 1;
 
         int x = 0;
-        int y = 0;
+        
 
         for (String suit : suits) {
             for (String rank : ranks) {
@@ -368,24 +387,7 @@ public class Project {
         }
         
         shuffleArray();
-
-        //cutting the deck
-        Random rCut = new Random();
-        int cuttingPoint = rCut.nextInt(shuffledDeck.length - 1);
-
-        for (int i = cuttingPoint + 1; i < 52; i++) {
-            cutDeck[y] = shuffledDeck[i];
-            y++;
-        }
-
-        for (int j = 0; j <= cuttingPoint; j++) {
-            cutDeck[y] = shuffledDeck[j];
-            y++;
-        }
-
-        for (String s : cutDeck) {
-            System.out.print(s + " "); //checking, delete later
-        }
+        cutDeck();
 
         String[] finalDeck = cutDeck.clone();
 

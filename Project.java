@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class Project {
 
     static int boardTotal;
+    static int playerHandCount;
+    //static int
     static int computersTotalCards;
     static int playersTotalCards;
     static int computerScore;
@@ -13,6 +15,7 @@ public class Project {
     static int computerTotal;
     static int playerTotal;
     static int check;
+    static int validInput;
     static String[] deck;
     static String[] shuffledDeck;
     static String[] cutDeck;
@@ -56,7 +59,6 @@ public class Project {
     }
 
     public static void playerPlays() {
-        boolean validInput = false;
         Scanner sc = new Scanner(System.in);
         System.out.print("\nYour cards:");
         for (int i = 0; i < playersHand.length; i++) {
@@ -64,30 +66,17 @@ public class Project {
         }
 
         System.out.print("\n\nEnter the sequence number of the card that you want to play: ");
+        String sequence = sc.next();
         String[] tempLength3 = new String[3];
         String[] tempLength2 = new String[2];
         String[] tempLength1 = new String[1];
-        String[] tempLength0 = new String[0];
 
-        if (playersHand.length == 4) {
-            while (!validInput) {
-                String sequence1 = sc.next();
+        if (playerHandCount == 4) {
+            while (validInput == 0) {
 
-                switch (sequence1) {
+                switch (sequence) {
                     case "1":
-                    case "2":
-                    case "3":
-                    case "4":
-                        System.out.print("\nCards on the table: ");
-                        for (int i = 0; i < board.length; i++) {  //bunu sadece oyun başlarken çalışacak, sonra çalışmayacak şekilde düzenle
-                            System.out.print(board[i] + " ");// board
-                        }
-                        break;
-                }
-
-                switch (sequence1) {
-                    case "1":
-                        validInput = true;
+                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[0];
                         System.out.print("\nCards on the table: ");
@@ -98,9 +87,10 @@ public class Project {
                         tempLength3[1] = playersHand[2];
                         tempLength3[2] = playersHand[3];
                         playersHand = tempLength3;
+                        playerHandCount = playerHandCount - 1;
                         break;
                     case "2":
-                        validInput = true;
+                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[1];
                         System.out.print("\nCards on the table: ");
@@ -111,9 +101,10 @@ public class Project {
                         tempLength3[1] = playersHand[2];
                         tempLength3[2] = playersHand[3];
                         playersHand = tempLength3;
+                        playerHandCount = playerHandCount - 1;
                         break;
                     case "3":
-                        validInput = true;
+                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[2];
                         System.out.print("\nCards on the table: ");
@@ -124,9 +115,10 @@ public class Project {
                         tempLength3[1] = playersHand[1];
                         tempLength3[2] = playersHand[3];
                         playersHand = tempLength3;
+                        playerHandCount = playerHandCount - 1;
                         break;
                     case "4":
-                        validInput = true;
+                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[3];
                         System.out.print("\nCards on the table: ");
@@ -137,11 +129,13 @@ public class Project {
                         tempLength3[1] = playersHand[1];
                         tempLength3[2] = playersHand[2];
                         playersHand = tempLength3;
+                        playerHandCount = playerHandCount - 1;
                         break;
                     default:
                         System.out.print("You entered invalid sequence. Enter a valid sequence: ");
+                        sequence = sc.next();
                 }
-                switch (sequence1) {
+                switch (sequence) {
                     case "1":
                     case "2":
                     case "3":
@@ -170,220 +164,225 @@ public class Project {
                         }
                 }
             }
+        }
 
-            if (playersHand.length == 3) {
-                while (!validInput) {
-                    String sequence2 = sc.next();
+        if (playerHandCount == 3) {
+            while (validInput == 0) {
 
-                    switch (sequence2) {
-                        case "1":
-                        case "2":
-                        case "3":
-                            System.out.print("\nCards on the table: ");
-                            for (int i = 0; i < board.length; i++) {
-                                System.out.print(board[i] + " ");// board
-                            }
-                            break;
-                    }
-
-                    switch (sequence2) {
-                        case "1":
-                            validInput = true;
-                            board = Arrays.copyOf(board, board.length + 1);
-                            board[board.length - 1] = playersHand[0];
-
-                            for (int j = 0; j < board.length; j++) {
-                                System.out.print(board[j] + " "); // board
-                            }
-                            tempLength2[0] = playersHand[1];
-                            tempLength2[1] = playersHand[2];
-                            playersHand = tempLength2;
-                            break;
-                        case "2":
-                            validInput = true;
-                            board = Arrays.copyOf(board, board.length + 1);
-                            board[board.length - 1] = playersHand[1];
-                            for (int j = 0; j < board.length; j++) {
-                                System.out.print(board[j] + " "); // board
-                            }
-                            tempLength2[0] = playersHand[0];
-                            tempLength2[1] = playersHand[2];
-                            playersHand = tempLength2;
-                            break;
-                        case "3":
-                            validInput = true;
-                            board = Arrays.copyOf(board, board.length + 1);
-                            board[board.length - 1] = playersHand[2];
-                            for (int j = 0; j < board.length; j++) {
-                                System.out.print(board[j] + " "); // board
-                            }
-                            tempLength2[0] = playersHand[0];
-                            tempLength2[1] = playersHand[1];
-                            playersHand = tempLength2;
-                            break;
-                        default:
-                            System.out.print("You entered invalid sequence. ");
-                    }
-                    switch (sequence2) {
-                        case "1":
-                        case "2":
-                        case "3":
-                        case "4":
-                            if (board.length == 2 && (board[board.length - 1].charAt(1)) == (board[board.length - 2].charAt(1))) { //pisti
-                                playerScore += 10;
-                                playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                                for (int j = 0; j < board.length; j++) {
-                                    playersCards[playerTotal] = board[j];
-                                    playerTotal++;
-                                }
-                                for (int j = 0; j < board.length; j++) {
-                                    board[j] = ""; //player took all cards, there is no card on the board anymore
-                                }
-                                check = 1;
-                            } else if (board[board.length - 1].charAt(1) == board[board.length - 2].charAt(1) || board[board.length - 1].charAt(1) == 'J') {
-                                playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                                for (int j = 0; j < board.length; j++) {
-                                    playersCards[playerTotal] = board[j];
-                                    playerTotal++;
-                                }
-                                for (int j = 0; j < board.length; j++) {
-                                    board[j] = ""; //player took all cards, there is no card on the board anymore
-                                }
-                                check = 1;
-                            }
-                    }
+                switch (sequence) {
+                    case "1":
+                    case "2":
+                    case "3":
+                        System.out.print("\nCards on the table: ");
+                        for (int i = 0; i < board.length; i++) {
+                            System.out.print(board[i] + " ");// board
+                        }
+                        break;
                 }
-            }
 
-            if (playersHand.length == 2) {
-                while (!validInput) {
-                    String sequence3 = sc.next();
+                switch (sequence) {
+                    case "1":
+                        validInput = 1;
+                        board = Arrays.copyOf(board, board.length + 1);
+                        board[board.length - 1] = playersHand[0];
 
-                    switch (sequence3) {
-                        case "1":
-                        case "2":
-                            System.out.print("\nCards on the table: ");
-                            for (int i = 0; i < board.length; i++) {
-                                System.out.print(board[i] + " ");// board
-                            }
-                            break;
-                    }
-
-                    switch (sequence3) {
-                        case "1":
-                            validInput = true;
-                            board = Arrays.copyOf(board, board.length + 1);
-                            board[board.length - 1] = playersHand[0];
-                            for (int j = 0; j < board.length; j++) {
-                                System.out.print(board[j] + " "); // board
-                            }
-                            tempLength1[0] = playersHand[1];
-                            playersHand = tempLength1;
-                            break;
-                        case "2":
-                            validInput = true;
-                            board = Arrays.copyOf(board, board.length + 1);
-                            board[board.length - 1] = playersHand[1];
-                            for (int j = 0; j < board.length; j++) {
-                                System.out.print(board[j] + " "); // board
-                            }
-                            tempLength1[0] = playersHand[0];
-                            playersHand = tempLength1;
-                            break;
-                        default:
-                            System.out.print("You entered invalid sequence. ");
-                    }
-                    switch (sequence3) {
-                        case "1":
-                        case "2":
-                        case "3":
-                        case "4":
-                            if (board.length == 2 && (board[board.length - 1].charAt(1)) == (board[board.length - 2].charAt(1))) { //pisti
-                                playerScore += 10;
-                                playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                                for (int j = 0; j < board.length; j++) {
-                                    playersCards[playerTotal] = board[j];
-                                    playerTotal++;
-                                }
-                                for (int j = 0; j < board.length; j++) {
-                                    board[j] = ""; //player took all cards, there is no card on the board anymore
-                                }
-                                check = 1;
-                            } else if (board[board.length - 1].charAt(1) == board[board.length - 2].charAt(1) || board[board.length - 1].charAt(1) == 'J') {
-                                playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                                for (int j = 0; j < board.length; j++) {
-                                    playersCards[playerTotal] = board[j];
-                                    playerTotal++;
-                                }
-                                for (int j = 0; j < board.length; j++) {
-                                    board[j] = ""; //player took all cards, there is no card on the board anymore
-                                }
-                                check = 1;
-                            }
-                    }
+                        for (int j = 0; j < board.length; j++) {
+                            System.out.print(board[j] + " "); // board
+                        }
+                        tempLength2[0] = playersHand[1];
+                        tempLength2[1] = playersHand[2];
+                        playersHand = tempLength2;
+                        playerHandCount = playerHandCount - 1;
+                        break;
+                    case "2":
+                        validInput = 1;
+                        board = Arrays.copyOf(board, board.length + 1);
+                        board[board.length - 1] = playersHand[1];
+                        for (int j = 0; j < board.length; j++) {
+                            System.out.print(board[j] + " "); // board
+                        }
+                        tempLength2[0] = playersHand[0];
+                        tempLength2[1] = playersHand[2];
+                        playersHand = tempLength2;
+                        playerHandCount = playerHandCount - 1;
+                        break;
+                    case "3":
+                        validInput = 1;
+                        board = Arrays.copyOf(board, board.length + 1);
+                        board[board.length - 1] = playersHand[2];
+                        for (int j = 0; j < board.length; j++) {
+                            System.out.print(board[j] + " "); // board
+                        }
+                        tempLength2[0] = playersHand[0];
+                        tempLength2[1] = playersHand[1];
+                        playersHand = tempLength2;
+                        playerHandCount = playerHandCount - 1;
+                        break;
+                    default:
+                        System.out.print("You entered invalid sequence. ");
+                        sequence = sc.next();
                 }
-            }
-
-            if (playersHand.length == 1) {
-                while (!validInput) {
-                    String sequence4 = sc.next();
-
-                    switch (sequence4) {
-                        case "1":
-                            System.out.print("\nCards on the table: ");
-                            for (int i = 0; i < board.length; i++) {
-                                System.out.print(board[i] + " ");// board
-                            }
-                            break;
-                    }
-
-                    switch (sequence4) {
-                        case "1":
-                            validInput = true;
-                            board = Arrays.copyOf(board, board.length + 1);
-                            board[board.length - 1] = playersHand[0];
+                switch (sequence) {
+                    case "1":
+                    case "2":
+                    case "3":
+                    case "4":
+                        if (board.length == 2 && (board[board.length - 1].charAt(1)) == (board[board.length - 2].charAt(1))) { //pisti
+                            playerScore += 10;
+                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
                             for (int j = 0; j < board.length; j++) {
-                                System.out.print(board[j] + " "); // board
+                                playersCards[playerTotal] = board[j];
+                                playerTotal++;
                             }
-                            tempLength0 = playersHand;
-                            playersHand = tempLength0;
-                            break;
-                        default:
-                            System.out.print("You entered invalid sequence. ");
-                    }
-                    switch (sequence4) {
-                        case "1":
-                        case "2":
-                        case "3":
-                        case "4":
-                            if (board.length == 2 && (board[board.length - 1].charAt(1)) == (board[board.length - 2].charAt(1))) { //pisti
-                                playerScore += 10;
-                                playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                                for (int j = 0; j < board.length; j++) {
-                                    playersCards[playerTotal] = board[j];
-                                    playerTotal++;
-                                }
-                                for (int j = 0; j < board.length; j++) {
-                                    board[j] = ""; //player took all cards, there is no card on the board anymore
-                                }
-                                check = 1;
-                            } else if (board[board.length - 1].charAt(1) == board[board.length - 2].charAt(1) || board[board.length - 1].charAt(1) == 'J') {
-                                playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                                for (int j = 0; j < board.length; j++) {
-                                    playersCards[playerTotal] = board[j];
-                                    playerTotal++;
-                                }
-                                for (int j = 0; j < board.length; j++) {
-                                    board[j] = ""; //player took all cards, there is no card on the board anymore
-                                }
-                                check = 1;
+                            for (int j = 0; j < board.length; j++) {
+                                board[j] = ""; //player took all cards, there is no card on the board anymore
                             }
-                    }
+                            check = 1;
+                        } else if (board[board.length - 1].charAt(1) == board[board.length - 2].charAt(1) || board[board.length - 1].charAt(1) == 'J') {
+                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
+                            for (int j = 0; j < board.length; j++) {
+                                playersCards[playerTotal] = board[j];
+                                playerTotal++;
+                            }
+                            for (int j = 0; j < board.length; j++) {
+                                board[j] = ""; //player took all cards, there is no card on the board anymore
+                            }
+                            check = 1;
+                        }
                 }
             }
         }
-        validInput = false;
+
+        if (playerHandCount == 2) {
+            while (validInput == 0) {
+
+                switch (sequence) {
+                    case "1":
+                    case "2":
+                        System.out.print("\nCards on the table: ");
+                        for (int i = 0; i < board.length; i++) {
+                            System.out.print(board[i] + " ");// board
+                        }
+                        break;
+                }
+
+                switch (sequence) {
+                    case "1":
+                        validInput = 1;
+                        board = Arrays.copyOf(board, board.length + 1);
+                        board[board.length - 1] = playersHand[0];
+                        for (int j = 0; j < board.length; j++) {
+                            System.out.print(board[j] + " "); // board
+                        }
+                        tempLength1[0] = playersHand[1];
+                        playersHand = tempLength1;
+                        playerHandCount = playerHandCount - 1;
+                        break;
+                    case "2":
+                        validInput = 1;
+                        board = Arrays.copyOf(board, board.length + 1);
+                        board[board.length - 1] = playersHand[1];
+                        for (int j = 0; j < board.length; j++) {
+                            System.out.print(board[j] + " "); // board
+                        }
+                        tempLength1[0] = playersHand[0];
+                        playersHand = tempLength1;
+                        playerHandCount = playerHandCount - 1;
+                        break;
+                    default:
+                        System.out.print("You entered invalid sequence. ");
+                        sequence = sc.next();
+                }
+                switch (sequence) {
+                    case "1":
+                    case "2":
+                    case "3":
+                    case "4":
+                        if (board.length == 2 && (board[board.length - 1].charAt(1)) == (board[board.length - 2].charAt(1))) { //pisti
+                            playerScore += 10;
+                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
+                            for (int j = 0; j < board.length; j++) {
+                                playersCards[playerTotal] = board[j];
+                                playerTotal++;
+                            }
+                            for (int j = 0; j < board.length; j++) {
+                                board[j] = ""; //player took all cards, there is no card on the board anymore
+                            }
+                            check = 1;
+                        } else if (board[board.length - 1].charAt(1) == board[board.length - 2].charAt(1) || board[board.length - 1].charAt(1) == 'J') {
+                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
+                            for (int j = 0; j < board.length; j++) {
+                                playersCards[playerTotal] = board[j];
+                                playerTotal++;
+                            }
+                            for (int j = 0; j < board.length; j++) {
+                                board[j] = ""; //player took all cards, there is no card on the board anymore
+                            }
+                            check = 1;
+                        }
+                }
+            }
+        }
+
+        if (playerHandCount == 1) {
+            while (validInput == 0) {
+
+                switch (sequence) {
+                    case "1":
+                        System.out.print("\nCards on the table: ");
+                        for (int i = 0; i < board.length; i++) {
+                            System.out.print(board[i] + " ");// board
+                        }
+                        break;
+                }
+
+                switch (sequence) {
+                    case "1":
+                        validInput = 1;
+                        board = Arrays.copyOf(board, board.length + 1);
+                        board[board.length - 1] = playersHand[0];
+                        for (int j = 0; j < board.length; j++) {
+                            System.out.print(board[j] + " "); // board
+                        }
+                        playerHandCount = playerHandCount - 1;
+                        break;
+                    default:
+                        System.out.print("You entered invalid sequence. ");
+                        sequence = sc.next();
+                }
+                switch (sequence) {
+                    case "1":
+                    case "2":
+                    case "3":
+                    case "4":
+                        if (board.length == 2 && (board[board.length - 1].charAt(1)) == (board[board.length - 2].charAt(1))) { //pisti
+                            playerScore += 10;
+                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
+                            for (int j = 0; j < board.length; j++) {
+                                playersCards[playerTotal] = board[j];
+                                playerTotal++;
+                            }
+                            for (int j = 0; j < board.length; j++) {
+                                board[j] = ""; //player took all cards, there is no card on the board anymore
+                            }
+                            check = 1;
+                        } else if (board[board.length - 1].charAt(1) == board[board.length - 2].charAt(1) || board[board.length - 1].charAt(1) == 'J') {
+                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
+                            for (int j = 0; j < board.length; j++) {
+                                playersCards[playerTotal] = board[j];
+                                playerTotal++;
+                            }
+                            for (int j = 0; j < board.length; j++) {
+                                board[j] = ""; //player took all cards, there is no card on the board anymore
+                            }
+                            check = 1;
+                        }
+                }
+            }
+        }
     }
+
+
 
     public static void computerPlays() {
         boolean played = false;
@@ -423,7 +422,7 @@ public class Project {
                     for (int j = i; j < computersHand.length - 1; j++) {
                         computersHand[j] = computersHand[j + 1];
                     }
-                    computersHand[computersHand.length - 1] = null;
+                    computersHand[computersHand.length - 1] = "";
                     check = 2;
 
                     //if it can take all cards with jack
@@ -450,7 +449,7 @@ public class Project {
                     for (int j = i; j < computersHand.length - 1; j++) {
                         computersHand[j] = computersHand[j + 1];
                     }
-                    computersHand[computersHand.length - 1] = null;
+                    computersHand[computersHand.length - 1] = "";
                     check = 2;
                 }
                 break;
@@ -468,7 +467,7 @@ public class Project {
             for (int j = 0; j < computersHand.length - 1; j++) {
                 computersHand[j] = computersHand[j + 1];
             }
-            computersHand[computersHand.length - 1] = null;
+            computersHand[computersHand.length - 1] = "";
         }
 
         System.out.print("\nComputer's cards:");
@@ -533,8 +532,9 @@ public class Project {
         shuffledDeck = new String[52];
         boardTotal = 4;
         board = new String[boardTotal];
+        playerHandCount = 4;
         computersHand = new String[4];
-        playersHand = new String[4];
+        playersHand = new String[playerHandCount];
         computersTotalCards = 0;
         playersTotalCards = 0;
         computerTotal = 0;
@@ -545,6 +545,7 @@ public class Project {
         playerScore = 0;
         control = 4;
         check = 0;
+        validInput = 0;
         int generalRound = 1;
         int miniRound = 1;
 
@@ -571,6 +572,7 @@ public class Project {
         }
 
         while (generalRound != 7) {
+            System.out.print("\n (1) playerHandCount= " + playerHandCount + "\n"); //
             System.out.print("\n\nRound " + generalRound + ": ");
 
             //computers hand
@@ -590,13 +592,17 @@ public class Project {
             control = control + 4;
 
             while (miniRound != 5) {
+                System.out.print("\n (2) playerHandCount= " + playerHandCount + "\n"); //
                 computerPlays();
+                validInput = 0;
                 playerPlays();
                 miniRound++;
+                System.out.print("\n (3) playerHandCount= " + playerHandCount + "\n"); //
             }
-
+            playerHandCount = 4;
             miniRound = 1;
             generalRound++;
+            System.out.print("\n (4) playerHandCount= " + playerHandCount + "\n"); //
         }
 
         //last cards on the board

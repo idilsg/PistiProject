@@ -5,8 +5,6 @@ import java.util.Scanner;
 public class Project {
 
     static int boardTotal;
-    static int playerHandCount;
-    //static int
     static int computersTotalCards;
     static int playersTotalCards;
     static int computerScore;
@@ -15,6 +13,7 @@ public class Project {
     static int computerTotal;
     static int playerTotal;
     static int check;
+    static int playerHandCount;
     static int validInput;
     static String[] deck;
     static String[] shuffledDeck;
@@ -25,6 +24,22 @@ public class Project {
     static String[] playersHand;
     static String[] computersCards;
     static String[] playersCards;
+
+    public static void removeElement(String[] arr, String value) {
+        int index = -1;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].equals(value)) {
+                index = i;
+                break;
+            }
+        }
+        if (index != -1) {
+            for (int i = index; i < arr.length - 1; i++) {
+                arr[i] = arr[i + 1];
+            }
+            arr[arr.length - 1] = null;
+        }
+    }
 
     public static void shuffleArray() {
         Random rShuffle = new Random();
@@ -61,75 +76,71 @@ public class Project {
     public static void playerPlays() {
         Scanner sc = new Scanner(System.in);
         System.out.print("\nYour cards:");
-        for (int i = 0; i < playersHand.length; i++) {
+        for (int i = 0; i < playerHandCount; i++) {
             System.out.print(" " + playersHand[i]);
         }
 
         System.out.print("\n\nEnter the sequence number of the card that you want to play: ");
         String sequence = sc.next();
-        String[] tempLength3 = new String[3];
-        String[] tempLength2 = new String[2];
-        String[] tempLength1 = new String[1];
 
         if (playerHandCount == 4) {
             while (validInput == 0) {
 
                 switch (sequence) {
                     case "1":
-                        validInput = 1;
+                    case "2":
+                    case "3":
+                    case "4":
+                        System.out.print("\nCards on the table: ");
+                        for (int i = 0; i < board.length; i++) {
+                            System.out.print(board[i] + " ");// board
+                        }
+                        break;
+                }
+
+                switch (sequence) {
+                    case "1":
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[0];
-                        System.out.print("\nCards on the table: ");
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        tempLength3[0] = playersHand[1];
-                        tempLength3[1] = playersHand[2];
-                        tempLength3[2] = playersHand[3];
-                        playersHand = tempLength3;
-                        playerHandCount = playerHandCount - 1;
+                        playersHand[0] = playersHand[1];
+                        playersHand[1] = playersHand[2];
+                        playersHand[2] = playersHand[3];
+                        removeElement(playersHand, playersHand[4]);
+                        playerHandCount =- 1;
+                        validInput = 1;
                         break;
                     case "2":
-                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[1];
-                        System.out.print("\nCards on the table: ");
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        tempLength3[0] = playersHand[0];
-                        tempLength3[1] = playersHand[2];
-                        tempLength3[2] = playersHand[3];
-                        playersHand = tempLength3;
-                        playerHandCount = playerHandCount - 1;
+                        playersHand[1] = playersHand[2];
+                        playersHand[2] = playersHand[3];
+                        removeElement(playersHand, playersHand[4]);
+                        validInput = 1;
                         break;
                     case "3":
-                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[2];
-                        System.out.print("\nCards on the table: ");
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        tempLength3[0] = playersHand[0];
-                        tempLength3[1] = playersHand[1];
-                        tempLength3[2] = playersHand[3];
-                        playersHand = tempLength3;
-                        playerHandCount = playerHandCount - 1;
+                        playersHand[2] = playersHand[3];
+                        removeElement(playersHand, playersHand[4]);
+                        validInput = 1;
                         break;
                     case "4":
-                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[3];
-                        System.out.print("\nCards on the table: ");
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        tempLength3[0] = playersHand[0];
-                        tempLength3[1] = playersHand[1];
-                        tempLength3[2] = playersHand[2];
-                        playersHand = tempLength3;
-                        playerHandCount = playerHandCount - 1;
+                        removeElement(playersHand, playersHand[4]);
+                        validInput = 1;
                         break;
                     default:
                         System.out.print("You entered invalid sequence. Enter a valid sequence: ");
@@ -182,41 +193,35 @@ public class Project {
 
                 switch (sequence) {
                     case "1":
-                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[0];
 
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        tempLength2[0] = playersHand[1];
-                        tempLength2[1] = playersHand[2];
-                        playersHand = tempLength2;
-                        playerHandCount = playerHandCount - 1;
+                        playersHand[0] = playersHand[1];
+                        playersHand[1] = playersHand[2];
+                        removeElement(playersHand, playersHand[3]);
+                        validInput = 1;
                         break;
                     case "2":
-                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[1];
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        tempLength2[0] = playersHand[0];
-                        tempLength2[1] = playersHand[2];
-                        playersHand = tempLength2;
-                        playerHandCount = playerHandCount - 1;
+                        playersHand[1] = playersHand[2];
+                        removeElement(playersHand, playersHand[3]);
+                        validInput = 1;
                         break;
                     case "3":
-                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[2];
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        tempLength2[0] = playersHand[0];
-                        tempLength2[1] = playersHand[1];
-                        playersHand = tempLength2;
-                        playerHandCount = playerHandCount - 1;
+                        removeElement(playersHand, playersHand[3]);
+                        validInput = 1;
                         break;
                     default:
                         System.out.print("You entered invalid sequence. ");
@@ -268,26 +273,23 @@ public class Project {
 
                 switch (sequence) {
                     case "1":
-                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[0];
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        tempLength1[0] = playersHand[1];
-                        playersHand = tempLength1;
-                        playerHandCount = playerHandCount - 1;
+                        playersHand[0] = playersHand[1];
+                        removeElement(playersHand, playersHand[2]);
+                        validInput = 1;
                         break;
                     case "2":
-                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[1];
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        tempLength1[0] = playersHand[0];
-                        playersHand = tempLength1;
-                        playerHandCount = playerHandCount - 1;
+                        removeElement(playersHand, playersHand[2]);
+                        validInput = 1;
                         break;
                     default:
                         System.out.print("You entered invalid sequence. ");
@@ -338,13 +340,13 @@ public class Project {
 
                 switch (sequence) {
                     case "1":
-                        validInput = 1;
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[0];
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        playerHandCount = playerHandCount - 1;
+                        removeElement(playersHand, playersHand[1]);
+                        validInput = 1;
                         break;
                     default:
                         System.out.print("You entered invalid sequence. ");
@@ -381,8 +383,6 @@ public class Project {
             }
         }
     }
-
-
 
     public static void computerPlays() {
         boolean played = false;
@@ -422,7 +422,7 @@ public class Project {
                     for (int j = i; j < computersHand.length - 1; j++) {
                         computersHand[j] = computersHand[j + 1];
                     }
-                    computersHand[computersHand.length - 1] = "";
+                    computersHand[computersHand.length - 1] = "-";
                     check = 2;
 
                     //if it can take all cards with jack
@@ -449,7 +449,7 @@ public class Project {
                     for (int j = i; j < computersHand.length - 1; j++) {
                         computersHand[j] = computersHand[j + 1];
                     }
-                    computersHand[computersHand.length - 1] = "";
+                    computersHand[computersHand.length - 1] = "-";
                     check = 2;
                 }
                 break;
@@ -467,7 +467,7 @@ public class Project {
             for (int j = 0; j < computersHand.length - 1; j++) {
                 computersHand[j] = computersHand[j + 1];
             }
-            computersHand[computersHand.length - 1] = "";
+            computersHand[computersHand.length - 1] = "-";
         }
 
         System.out.print("\nComputer's cards:");
@@ -524,7 +524,6 @@ public class Project {
 
     public static void main(String[] args) {
 
-
         String[] suits = {"♠", "♣", "♥", "♦"};
         String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         deck = new String[52];
@@ -532,8 +531,8 @@ public class Project {
         shuffledDeck = new String[52];
         boardTotal = 4;
         board = new String[boardTotal];
-        playerHandCount = 4;
         computersHand = new String[4];
+        playerHandCount = 4;
         playersHand = new String[playerHandCount];
         computersTotalCards = 0;
         playersTotalCards = 0;
@@ -572,7 +571,6 @@ public class Project {
         }
 
         while (generalRound != 7) {
-            System.out.print("\n (1) playerHandCount= " + playerHandCount + "\n"); //
             System.out.print("\n\nRound " + generalRound + ": ");
 
             //computers hand
@@ -592,17 +590,14 @@ public class Project {
             control = control + 4;
 
             while (miniRound != 5) {
-                System.out.print("\n (2) playerHandCount= " + playerHandCount + "\n"); //
                 computerPlays();
                 validInput = 0;
                 playerPlays();
                 miniRound++;
-                System.out.print("\n (3) playerHandCount= " + playerHandCount + "\n"); //
             }
             playerHandCount = 4;
             miniRound = 1;
             generalRound++;
-            System.out.print("\n (4) playerHandCount= " + playerHandCount + "\n"); //
         }
 
         //last cards on the board

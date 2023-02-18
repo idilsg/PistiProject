@@ -25,22 +25,6 @@ public class Project {
     static String[] computersCards;
     static String[] playersCards;
 
-    public static void removeElement(String[] arr, String value) {
-        int index = -1;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i].equals(value)) {
-                index = i;
-                break;
-            }
-        }
-        if (index != -1) {
-            for (int i = index; i < arr.length - 1; i++) {
-                arr[i] = arr[i + 1];
-            }
-            arr[arr.length - 1] = null;
-        }
-    }
-
     public static void shuffleArray() {
         Random rShuffle = new Random();
         shuffledDeck = deck.clone();
@@ -88,18 +72,6 @@ public class Project {
 
                 switch (sequence) {
                     case "1":
-                    case "2":
-                    case "3":
-                    case "4":
-                        System.out.print("\nCards on the table: ");
-                        for (int i = 0; i < board.length; i++) {
-                            System.out.print(board[i] + " ");// board
-                        }
-                        break;
-                }
-
-                switch (sequence) {
-                    case "1":
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[0];
                         for (int j = 0; j < board.length; j++) {
@@ -108,8 +80,8 @@ public class Project {
                         playersHand[0] = playersHand[1];
                         playersHand[1] = playersHand[2];
                         playersHand[2] = playersHand[3];
-                        removeElement(playersHand, playersHand[4]);
-                        playerHandCount =- 1;
+                        playersHand[3] = "-";
+                        playerHandCount--;
                         validInput = 1;
                         break;
                     case "2":
@@ -120,7 +92,8 @@ public class Project {
                         }
                         playersHand[1] = playersHand[2];
                         playersHand[2] = playersHand[3];
-                        removeElement(playersHand, playersHand[4]);
+                        playersHand[3] = "-";
+                        playerHandCount--;
                         validInput = 1;
                         break;
                     case "3":
@@ -130,7 +103,8 @@ public class Project {
                             System.out.print(board[j] + " "); // board
                         }
                         playersHand[2] = playersHand[3];
-                        removeElement(playersHand, playersHand[4]);
+                        playersHand[3] = "-";
+                        playerHandCount--;
                         validInput = 1;
                         break;
                     case "4":
@@ -139,7 +113,8 @@ public class Project {
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        removeElement(playersHand, playersHand[4]);
+                        playersHand[3] = "-";
+                        playerHandCount--;
                         validInput = 1;
                         break;
                     default:
@@ -153,24 +128,14 @@ public class Project {
                     case "4":
                         if (board.length == 2 && (board[board.length - 1].charAt(1)) == (board[board.length - 2].charAt(1))) { //pisti
                             playerScore += 10;
-                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                            for (int j = 0; j < board.length; j++) {
-                                playersCards[playerTotal] = board[j];
-                                playerTotal++;
-                            }
-                            for (int j = 0; j < board.length; j++) {
-                                board[j] = ""; //player took all cards, there is no card on the board anymore
-                            }
+                            System.arraycopy(board, 0, playersCards, playersTotalCards, board.length);
+                            playersTotalCards = playersTotalCards + board.length;
+                            board = Arrays.copyOf(board, 0);
                             check = 1;
                         } else if (board[board.length - 1].charAt(1) == board[board.length - 2].charAt(1) || board[board.length - 1].charAt(1) == 'J') {
-                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                            for (int j = 0; j < board.length; j++) {
-                                playersCards[playerTotal] = board[j];
-                                playerTotal++;
-                            }
-                            for (int j = 0; j < board.length; j++) {
-                                board[j] = ""; //player took all cards, there is no card on the board anymore
-                            }
+                            System.arraycopy(board, 0, playersCards, playersTotalCards, board.length);
+                            playersTotalCards = playersTotalCards + board.length;
+                            board = Arrays.copyOf(board, 0);
                             check = 1;
                         }
                 }
@@ -182,17 +147,6 @@ public class Project {
 
                 switch (sequence) {
                     case "1":
-                    case "2":
-                    case "3":
-                        System.out.print("\nCards on the table: ");
-                        for (int i = 0; i < board.length; i++) {
-                            System.out.print(board[i] + " ");// board
-                        }
-                        break;
-                }
-
-                switch (sequence) {
-                    case "1":
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[0];
 
@@ -201,7 +155,8 @@ public class Project {
                         }
                         playersHand[0] = playersHand[1];
                         playersHand[1] = playersHand[2];
-                        removeElement(playersHand, playersHand[3]);
+                        playersHand[2] = "-";
+                        playerHandCount--;
                         validInput = 1;
                         break;
                     case "2":
@@ -211,7 +166,8 @@ public class Project {
                             System.out.print(board[j] + " "); // board
                         }
                         playersHand[1] = playersHand[2];
-                        removeElement(playersHand, playersHand[3]);
+                        playersHand[2] = "-";
+                        playerHandCount--;
                         validInput = 1;
                         break;
                     case "3":
@@ -220,7 +176,8 @@ public class Project {
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        removeElement(playersHand, playersHand[3]);
+                        playersHand[2] = "-";
+                        playerHandCount--;
                         validInput = 1;
                         break;
                     default:
@@ -234,24 +191,14 @@ public class Project {
                     case "4":
                         if (board.length == 2 && (board[board.length - 1].charAt(1)) == (board[board.length - 2].charAt(1))) { //pisti
                             playerScore += 10;
-                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                            for (int j = 0; j < board.length; j++) {
-                                playersCards[playerTotal] = board[j];
-                                playerTotal++;
-                            }
-                            for (int j = 0; j < board.length; j++) {
-                                board[j] = ""; //player took all cards, there is no card on the board anymore
-                            }
+                            System.arraycopy(board, 0, playersCards, playersTotalCards, board.length);
+                            playersTotalCards = playersTotalCards + board.length;
+                            board = Arrays.copyOf(board, 0);
                             check = 1;
                         } else if (board[board.length - 1].charAt(1) == board[board.length - 2].charAt(1) || board[board.length - 1].charAt(1) == 'J') {
-                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                            for (int j = 0; j < board.length; j++) {
-                                playersCards[playerTotal] = board[j];
-                                playerTotal++;
-                            }
-                            for (int j = 0; j < board.length; j++) {
-                                board[j] = ""; //player took all cards, there is no card on the board anymore
-                            }
+                            System.arraycopy(board, 0, playersCards, playersTotalCards, board.length);
+                            playersTotalCards = playersTotalCards + board.length;
+                            board = Arrays.copyOf(board, 0);
                             check = 1;
                         }
                 }
@@ -263,23 +210,14 @@ public class Project {
 
                 switch (sequence) {
                     case "1":
-                    case "2":
-                        System.out.print("\nCards on the table: ");
-                        for (int i = 0; i < board.length; i++) {
-                            System.out.print(board[i] + " ");// board
-                        }
-                        break;
-                }
-
-                switch (sequence) {
-                    case "1":
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[0];
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
                         playersHand[0] = playersHand[1];
-                        removeElement(playersHand, playersHand[2]);
+                        playersHand[1] = "-";
+                        playerHandCount--;
                         validInput = 1;
                         break;
                     case "2":
@@ -288,7 +226,8 @@ public class Project {
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        removeElement(playersHand, playersHand[2]);
+                        playersHand[1] = "-";
+                        playerHandCount--;
                         validInput = 1;
                         break;
                     default:
@@ -302,24 +241,14 @@ public class Project {
                     case "4":
                         if (board.length == 2 && (board[board.length - 1].charAt(1)) == (board[board.length - 2].charAt(1))) { //pisti
                             playerScore += 10;
-                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                            for (int j = 0; j < board.length; j++) {
-                                playersCards[playerTotal] = board[j];
-                                playerTotal++;
-                            }
-                            for (int j = 0; j < board.length; j++) {
-                                board[j] = ""; //player took all cards, there is no card on the board anymore
-                            }
+                            System.arraycopy(board, 0, playersCards, playersTotalCards, board.length);
+                            playersTotalCards = playersTotalCards + board.length;
+                            board = Arrays.copyOf(board, 0);
                             check = 1;
                         } else if (board[board.length - 1].charAt(1) == board[board.length - 2].charAt(1) || board[board.length - 1].charAt(1) == 'J') {
-                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                            for (int j = 0; j < board.length; j++) {
-                                playersCards[playerTotal] = board[j];
-                                playerTotal++;
-                            }
-                            for (int j = 0; j < board.length; j++) {
-                                board[j] = ""; //player took all cards, there is no card on the board anymore
-                            }
+                            System.arraycopy(board, 0, playersCards, playersTotalCards, board.length);
+                            playersTotalCards = playersTotalCards + board.length;
+                            board = Arrays.copyOf(board, 0);
                             check = 1;
                         }
                 }
@@ -331,21 +260,13 @@ public class Project {
 
                 switch (sequence) {
                     case "1":
-                        System.out.print("\nCards on the table: ");
-                        for (int i = 0; i < board.length; i++) {
-                            System.out.print(board[i] + " ");// board
-                        }
-                        break;
-                }
-
-                switch (sequence) {
-                    case "1":
                         board = Arrays.copyOf(board, board.length + 1);
                         board[board.length - 1] = playersHand[0];
                         for (int j = 0; j < board.length; j++) {
                             System.out.print(board[j] + " "); // board
                         }
-                        removeElement(playersHand, playersHand[1]);
+                        playersHand[0] = "-";
+                        playerHandCount--;
                         validInput = 1;
                         break;
                     default:
@@ -359,24 +280,14 @@ public class Project {
                     case "4":
                         if (board.length == 2 && (board[board.length - 1].charAt(1)) == (board[board.length - 2].charAt(1))) { //pisti
                             playerScore += 10;
-                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                            for (int j = 0; j < board.length; j++) {
-                                playersCards[playerTotal] = board[j];
-                                playerTotal++;
-                            }
-                            for (int j = 0; j < board.length; j++) {
-                                board[j] = ""; //player took all cards, there is no card on the board anymore
-                            }
+                            System.arraycopy(board, 0, playersCards, playersTotalCards, board.length);
+                            playersTotalCards = playersTotalCards + board.length;
+                            board = Arrays.copyOf(board, 0);
                             check = 1;
                         } else if (board[board.length - 1].charAt(1) == board[board.length - 2].charAt(1) || board[board.length - 1].charAt(1) == 'J') {
-                            playersTotalCards = playersTotalCards + board.length;//taking all the cards number
-                            for (int j = 0; j < board.length; j++) {
-                                playersCards[playerTotal] = board[j];
-                                playerTotal++;
-                            }
-                            for (int j = 0; j < board.length; j++) {
-                                board[j] = ""; //player took all cards, there is no card on the board anymore
-                            }
+                            System.arraycopy(board, 0, playersCards, playersTotalCards, board.length);
+                            playersTotalCards = playersTotalCards + board.length;
+                            board = Arrays.copyOf(board, 0);
                             check = 1;
                         }
                 }
@@ -529,19 +440,19 @@ public class Project {
         deck = new String[52];
         cutDeck = new String[52];
         shuffledDeck = new String[52];
+        computerTotal = 0;
+        playerTotal = 0;
         boardTotal = 4;
         board = new String[boardTotal];
         computersHand = new String[4];
-        playerHandCount = 4;
-        playersHand = new String[playerHandCount];
+        playersHand = new String[4];
         computersTotalCards = 0;
         playersTotalCards = 0;
-        computerTotal = 0;
-        playerTotal = 0;
         computersCards = new String[computersTotalCards];
         playersCards = new String[playersTotalCards];
         computerScore = 0;
         playerScore = 0;
+        playerHandCount = 4;
         control = 4;
         check = 0;
         validInput = 0;
